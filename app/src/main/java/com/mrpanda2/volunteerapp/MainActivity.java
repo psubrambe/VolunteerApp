@@ -10,6 +10,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button volunteerSignInButton;
     Button organizationSignInButton;
+    Button volunteerSignUpButton;
+    Button organizationSignUpButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
