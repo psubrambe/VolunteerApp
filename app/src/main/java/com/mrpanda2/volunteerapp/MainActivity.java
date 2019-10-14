@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("Activity LifeCycle","Working!");
         volunteerSignInButton = findViewById(R.id.volunteerSignInButton);
         organizationSignInButton = findViewById(R.id.organizationSignInButton);
         volunteerSignInButton.setOnClickListener(new View.OnClickListener() {
