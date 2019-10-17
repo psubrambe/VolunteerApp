@@ -52,7 +52,6 @@ public class LoginFrag extends Fragment {
     public static LoginFrag newInstance(String param1, String param2) {
         LoginFrag fragment = new LoginFrag();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
