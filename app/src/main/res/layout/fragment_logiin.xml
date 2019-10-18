@@ -8,15 +8,28 @@
     tools:context=".LoginFrag">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/newEventButton"
+        android:layout_width="194dp"
+        android:layout_height="110dp"
+
+        android:layout_marginTop="108dp"
+        android:text="@string/newEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="450dp"
-        android:text="Edit Profile"
+        android:layout_marginTop="504dp"
+        android:text="@string/editProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,10 +38,10 @@
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="150dp"
-        android:text="Events"
+        android:layout_marginTop="236dp"
+        android:text="@string/events"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,10 +50,10 @@
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="300dp"
-        android:text="View/Edit Organization Data"
+        android:layout_marginTop="368dp"
+        android:text="@string/viewEditOrgData"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:text="Organization Name"
+        android:text="@string/orgName"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

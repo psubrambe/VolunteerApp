@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="orgName">Organization Name</string>
+    <string name="newEvent">New Event</string>
+    <string name="events">Events</string>
+    <string name="viewEditOrgData">View/Edit Organization Data</string>
+    <string name="editProfile">Edit Profile</string>
+
 </resources>
