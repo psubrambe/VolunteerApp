@@ -10,4 +10,10 @@
     <string name="viewEditOrgData">View/Edit Organization Data</string>
     <string name="editProfile">Edit Profile</string>
 
+    <string name="eventName">Event Name</string>
+    <string name="eventTime">Event Time</string>
+    <string name="eventLocation">Event Location</string>
+
+    <string name="createEvent">Create Event</string>
+
 </resources>
