@@ -1,6 +1,7 @@
 package com.mrpanda2.volunteerapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -33,6 +34,7 @@ public class LoginFrag extends Fragment {
     private Button event;
     private Button view;
     private Button edit;
+    private Button mNewEventButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,7 +62,6 @@ public class LoginFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
@@ -69,8 +70,10 @@ public class LoginFrag extends Fragment {
         // Inflate the layout for this fragment
         final View rootView =
                 inflater.inflate(R.layout.fragment_logiin, container, false);
+
         return rootView;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
