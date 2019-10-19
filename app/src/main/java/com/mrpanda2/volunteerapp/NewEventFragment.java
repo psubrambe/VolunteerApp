@@ -1,28 +1,31 @@
 package com.mrpanda2.volunteerapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.Date;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class NewEventFragment extends Fragment {
     private Event mEvent;
     private EditText mNameField;
-    private DatePicker mDateField;
-    private Date mDate;
+    private EditText mDateField;
     private EditText mTimeField;
     private EditText mLocationField;
     private Button mCreateButton;
+    private DatabaseReference mDatabase;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -52,8 +55,21 @@ public class NewEventFragment extends Fragment {
         });
 
         //DATE
-        mDateField = (DatePicker) v.findViewById(R.id.new_event_date);
-
+        mDateField = (EditText) v.findViewById(R.id.new_event_date);
+        mDateField.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+                //blank
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int count, int after){
+                mEvent.setDate(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s){
+                //blank
+            }
+        });
 
         //Event Time
         mTimeField = (EditText) v.findViewById(R.id.new_event_time);
@@ -93,7 +109,12 @@ public class NewEventFragment extends Fragment {
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                //writes event data to firebase
+                Log.d("Tag", "Database write attempt.");
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("events").child(mEvent.getId().toString()).setValue(mEvent);
+                Toast.makeText(NewEventFragment.this.getActivity(), "Event Created", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(NewEventFragment.this.getActivity(), organizationSignInPage.class);
+                startActivity(intent);
             }
         });
 
