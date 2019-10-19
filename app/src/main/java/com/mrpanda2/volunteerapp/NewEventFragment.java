@@ -113,7 +113,9 @@ public class NewEventFragment extends Fragment {
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("events").child(mEvent.getId().toString()).setValue(mEvent);
                 Toast.makeText(NewEventFragment.this.getActivity(), "Event Created", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(NewEventFragment.this.getActivity(), organizationSignInPage.class);
+                /*Intent intent = new Intent(NewEventFragment.this.getActivity(), organizationSignInPage.class);
+                startActivity(intent);*/
+                Intent intent = EventActivity.newIntent(NewEventFragment.this.getActivity(), mEvent.getId());
                 startActivity(intent);
             }
         });
