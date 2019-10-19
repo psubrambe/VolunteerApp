@@ -3,6 +3,7 @@ package com.mrpanda2.volunteerapp;
 import android.widget.DatePicker;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class Event {
@@ -10,7 +11,7 @@ public class Event {
     private UUID mId;
     //TODO: add specific orgID as foreign key
     private String mName;
-    private Date mDate;
+    private String mDate;
     private String mTime;
     private String mLocation;
 
@@ -24,9 +25,9 @@ public class Event {
 
     public void setName(String name){ mName = name; }
 
-    public Date getDate(){return mDate;}
+    public String getDate(){return mDate;}
 
-    public void setDate(Date date){mDate = date;}
+    public void setDate(String date){ mDate = date; }
 
     public String getTime(){return mTime;}
 
