@@ -1,9 +1,5 @@
 package com.mrpanda2.volunteerapp;
 
-import android.widget.DatePicker;
-
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class Event {

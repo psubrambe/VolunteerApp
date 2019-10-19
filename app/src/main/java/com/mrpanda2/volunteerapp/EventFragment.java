@@ -1,5 +1,6 @@
 package com.mrpanda2.volunteerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,16 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.UUID;
@@ -32,10 +32,11 @@ public class EventFragment extends Fragment {
     private DatabaseReference mDatabase;
 
     @Override public void onCreate(Bundle savedInstanceState){
-        mEvent = new Event();
         super.onCreate(savedInstanceState);
+        mEvent = new Event();
         final UUID eventId = (UUID) getActivity().getIntent()
                 .getSerializableExtra(EventActivity.EXTRA_EVENT_ID);
+        mEvent.setId(eventId);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference event = mDatabase.child("events").child(eventId.toString());
 
@@ -43,17 +44,23 @@ public class EventFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d("Tag", "ACCESSED");
-                for (DataSnapshot eventSnapshot: dataSnapshot.getChildren()){
-                    mEvent = eventSnapshot.getValue(Event.class);
-                }
+
+                mEvent.setName(dataSnapshot.child("name").getValue().toString());
+                mEvent.setDate(dataSnapshot.child("date").getValue().toString());
+                mEvent.setTime(dataSnapshot.child("time").getValue().toString());
+                mEvent.setLocation(dataSnapshot.child("location").getValue().toString());
+
+                mName.setText(mEvent.getName());
+                mDate.setText(mEvent.getDate());
+                mTime.setText(mEvent.getTime());
+                mLocation.setText(mEvent.getLocation());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            //nothing
             }
         });
-
     }
 
     @Override
@@ -65,22 +72,17 @@ public class EventFragment extends Fragment {
         mTime = (TextView) v.findViewById(R.id.event_time);
         mLocation = (TextView) v.findViewById(R.id.event_location);
 
-        mName.setText(mEvent.getName());
-        mDate.setText(mEvent.getDate());
-        mTime.setText(mEvent.getTime());
-        mLocation.setText(mEvent.getLocation());
-
         mDeleteButton = (Button) v.findViewById(R.id.delete_button);
         mDeleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("events").child(mEvent.getId().toString()).removeValue();
+                Toast.makeText(EventFragment.this.getActivity(), "Event Deleted", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EventFragment.this.getActivity(), organizationSignInPage.class);
+                startActivity(intent);
             }
         });
-
         return v;
-
     }
-
 }

@@ -1,6 +1,5 @@
 package com.mrpanda2.volunteerapp;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
