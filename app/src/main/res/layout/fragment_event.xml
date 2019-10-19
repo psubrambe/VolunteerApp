@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="@string/eventName"
+        android:textSize="8pt"
     />
 
     <TextView
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="@string/eventDate"
+        android:textSize="8pt"
         />
 
     <TextView
@@ -39,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="@string/eventTime"
+        android:textSize="8pt"
         />
 
     <TextView
@@ -53,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="@string/eventLocation"
+        android:textSize="8pt"
         />
 
     <TextView
