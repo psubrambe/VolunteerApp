@@ -21,6 +21,8 @@ public class Event {
 
     public UUID getId() { return mId; }
 
+    public void setId(UUID id) { mId = id ;}
+
     public String getName(){ return mName;}
 
     public void setName(String name){ mName = name; }

@@ -12,8 +12,6 @@ import java.util.UUID;
 
 public class EventActivity extends AppCompatActivity {
 
-
-
     public static final String EXTRA_EVENT_ID = "com.mrpanda2.volunteerapp.event_id";
 
 
