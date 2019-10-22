@@ -38,7 +38,7 @@
                 android:value="com.mrpanda2.volunteerapp.volunteerSignUpPage" />
         </activity>
         <activity android:name=".NewEventActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".EventActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.NewEventActivity" />
@@ -48,6 +48,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.EventActivity" />
+        </activity>
+        <activity android:name=".ShowEventActivity"
+            android:parentActivityName=".EventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.ShowEventActivity" />
+        </activity>
+        <activity android:name=".EditEventActivity"
+            android:parentActivityName=".ShowEventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.EditEventActivity" />
         </activity>
     </application>
 

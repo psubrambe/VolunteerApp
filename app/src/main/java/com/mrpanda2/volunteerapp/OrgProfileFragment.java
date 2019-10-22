@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 public class OrgProfileFragment extends Fragment {
     private Button mNewEventButton;
-
+    private Button showEventButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,6 +26,14 @@ public class OrgProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OrgProfileFragment.this.getActivity(), NewEventActivity.class);
+                startActivity(intent);
+            }
+        });
+        showEventButton = v.findViewById(R.id.Events);
+        showEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), ShowEventActivity.class);
                 startActivity(intent);
             }
         });

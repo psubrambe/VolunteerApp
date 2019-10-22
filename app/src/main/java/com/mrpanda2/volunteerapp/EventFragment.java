@@ -67,12 +67,12 @@ public class EventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_event, container, false);
 
-        mName = (TextView) v.findViewById(R.id.event_name);
-        mDate = (TextView) v.findViewById(R.id.event_date);
-        mTime = (TextView) v.findViewById(R.id.event_time);
-        mLocation = (TextView) v.findViewById(R.id.event_location);
+        mName =  v.findViewById(R.id.event_name);
+        mDate =  v.findViewById(R.id.event_date);
+        mTime =  v.findViewById(R.id.event_time);
+        mLocation =  v.findViewById(R.id.event_location);
 
-        mDeleteButton = (Button) v.findViewById(R.id.delete_button);
+        mDeleteButton =  v.findViewById(R.id.update_event_button);
         mDeleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/new_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/eventName"
+            android:inputType="text"
+            android:text=""
+            />
+
+        <EditText
+            android:id="@+id/new_event_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/eventDate"
+            android:inputType="text"
+            android:text=""
+            />
+
+
+        <EditText
+            android:id="@+id/new_event_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/eventTime"
+            android:inputType="text"
+            android:text=""
+            />
+
+        <EditText
+            android:id="@+id/new_event_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/eventLocation"
+            android:inputType="text"
+            android:text=""
+            />
+
+        <Button
+            android:id="@+id/update_event_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Event"
+            />
+        <Button
+            android:id="@+id/delete_event_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Event"
+            />
+
+
+</LinearLayout>
