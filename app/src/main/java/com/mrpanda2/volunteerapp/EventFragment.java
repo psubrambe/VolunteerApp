@@ -72,7 +72,7 @@ public class EventFragment extends Fragment {
         mTime =  v.findViewById(R.id.event_time);
         mLocation =  v.findViewById(R.id.event_location);
 
-        mDeleteButton =  v.findViewById(R.id.update_event_button);
+        mDeleteButton =  v.findViewById(R.id.delete_button);
         mDeleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
