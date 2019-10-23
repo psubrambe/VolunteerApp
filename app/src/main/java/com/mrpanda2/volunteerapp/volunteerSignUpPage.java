@@ -16,6 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class volunteerSignUpPage extends AppCompatActivity implements View.OnClickListener {
     Button volunteerSignInButton;
@@ -23,8 +27,13 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
     Button volunteerSignUpButton;
     Button organizationSignUpButton;
     private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference mDatabase;
     private EditText email;
     private EditText password;
+    private EditText mName;
+    private Volunteer mVolunteer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +41,13 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.volunteer_sign_up);
         email =  findViewById(R.id.Email);
         password = findViewById(R.id.Password);
+        mName = findViewById(R.id.Name);
         volunteerSignUpButton = findViewById(R.id.volunteerSignUpButton);
 
         volunteerSignUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 RegisterUser();
+
             }
         });
 
@@ -48,11 +59,16 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
     public void RegisterUser(){
         String Email = email.getText().toString();
         String Password = password.getText().toString();
+        final String Name = mName.getText().toString();
         if (TextUtils.isEmpty(Email)){
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(Password)){
+            Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (Name.isEmpty()){
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -63,11 +79,41 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
                         try {
                             //check if successful
                             if (task.isSuccessful()) {
+
+                                //Set User
+                                mUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                                //Volunteer Object created for Firebase
+                                mVolunteer = new Volunteer();
+                                mVolunteer.setId(mUser.getUid());
+                                mVolunteer.setName(Name);
+
+                                //User displayName is added to user's authentication
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(Name).build();
+
+                                mUser.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(volunteerSignUpPage.this, mUser.getDisplayName(),
+                                                            Toast.LENGTH_SHORT).show();
+                                                    Log.d("TAG", "User profile updated.");
+                                                }
+                                            }
+                                        });
+
                                 //User is successfully registered and logged in
                                 //start Profile Activity here
                                 Toast.makeText(volunteerSignUpPage.this, "registration successful",
                                         Toast.LENGTH_SHORT).show();
                                 finish();
+
+                                //Add User to Volunteer Group in Firebase
+                                mDatabase = FirebaseDatabase.getInstance().getReference();
+                                mDatabase.child("volunteers").child(mUser.getUid()).setValue(mVolunteer);
+
                                 Intent intent = new Intent(volunteerSignUpPage.this, MainActivity.class);
                                 startActivity(intent);
                             }else{

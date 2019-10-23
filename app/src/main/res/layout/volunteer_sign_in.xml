@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:background="@color/colorGreen"
-    tools:context=".volunteerSignInPage">
+    tools:context=".VolunteerSignInActivity">
 
     <Button
         android:id="@+id/button"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/volunteer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

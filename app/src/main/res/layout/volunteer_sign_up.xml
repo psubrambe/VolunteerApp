@@ -21,6 +21,18 @@
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <EditText
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
+
+    <EditText
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,8 +63,8 @@
         android:id="@+id/volunteerSignUpButton"
         android:layout_width="135dp"
         android:layout_height="89dp"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="80dp"
         android:text="Volunteer Sign Up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
