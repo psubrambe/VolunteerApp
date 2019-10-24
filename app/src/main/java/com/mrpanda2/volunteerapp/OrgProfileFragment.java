@@ -6,20 +6,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class OrgProfileFragment extends Fragment {
+    private FirebaseUser mUser;
+    private TextView mOrgName;
     private Button mNewEventButton;
     private Button showEventButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logiin, container, false);
+
+        mOrgName = v.findViewById(R.id.OrgNameSpace);
+
+        mOrgName.setText(mUser.getDisplayName());
 
         mNewEventButton = v.findViewById(R.id.newEventButton);
         mNewEventButton.setOnClickListener(new View.OnClickListener() {

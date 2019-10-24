@@ -17,4 +17,14 @@
 
     <string name="createEvent">Create Event</string>
 
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Name">Name</string>
+
+    <string name="OrganizationSignUp">Organization Sign Up</string>
+    <string name="VolunteerSignUp">Volunteer Sign Up</string>
+
+    <string name="SignUpPortal">Sign Up Portal</string>
+
+
 </resources>

@@ -47,11 +47,10 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
         volunteerSignUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 RegisterUser();
-
             }
         });
+    }
 
-}
     @Override
     public void onClick(View view) {
 
@@ -99,7 +98,7 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(volunteerSignUpPage.this, mUser.getDisplayName(),
                                                             Toast.LENGTH_SHORT).show();
-                                                    Log.d("TAG", "User profile updated.");
+                                                    Log.d("TAG", "Volunteer profile updated.");
                                                 }
                                             }
                                         });
