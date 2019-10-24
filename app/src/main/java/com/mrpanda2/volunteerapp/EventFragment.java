@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,11 +30,14 @@ public class EventFragment extends Fragment {
     private TextView mDate;
     private TextView mTime;
     private TextView mLocation;
+    private TextView mOrg;
     private Button mDeleteButton;
     private DatabaseReference mDatabase;
+    private FirebaseUser mUser;
 
     @Override public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         mEvent = new Event();
         final UUID eventId = (UUID) getActivity().getIntent()
                 .getSerializableExtra(EventActivity.EXTRA_EVENT_ID);
@@ -49,11 +54,13 @@ public class EventFragment extends Fragment {
                 mEvent.setDate(dataSnapshot.child("date").getValue().toString());
                 mEvent.setTime(dataSnapshot.child("time").getValue().toString());
                 mEvent.setLocation(dataSnapshot.child("location").getValue().toString());
+                mEvent.setOrg(dataSnapshot.child("organization").getValue().toString());
 
                 mName.setText(mEvent.getName());
                 mDate.setText(mEvent.getDate());
                 mTime.setText(mEvent.getTime());
                 mLocation.setText(mEvent.getLocation());
+                mOrg.setText(mEvent.getOrg());
             }
 
             @Override
@@ -71,6 +78,7 @@ public class EventFragment extends Fragment {
         mDate =  v.findViewById(R.id.event_date);
         mTime =  v.findViewById(R.id.event_time);
         mLocation =  v.findViewById(R.id.event_location);
+        mOrg = v.findViewById(R.id.event_org);
 
         mDeleteButton =  v.findViewById(R.id.delete_button);
         mDeleteButton.setOnClickListener(new View.OnClickListener(){

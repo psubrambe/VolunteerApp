@@ -35,6 +35,7 @@ public class EditEventFragment extends Fragment {
     private EditText mDateField;
     private EditText mTimeField;
     private EditText mLocationField;
+    private EditText mOrgField;
     private Button mUpdateButton;
     private Button mDeleteButton;
     private DatabaseReference mDatabase;
@@ -54,6 +55,7 @@ public class EditEventFragment extends Fragment {
         mDateField = v.findViewById(R.id.new_event_date);
         mTimeField = v.findViewById(R.id.new_event_time);
         mLocationField = v.findViewById(R.id.new_event_location);
+        mOrgField = v.findViewById(R.id.new_event_org);
         mUpdateButton = v.findViewById(R.id.update_event_button);
         mDeleteButton = v.findViewById(R.id.delete_event_button);
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -63,6 +65,7 @@ public class EditEventFragment extends Fragment {
         mDateField.setText(String.valueOf(bundle.getString("date")));
         mTimeField.setText(String.valueOf(bundle.getString("time")));
         mLocationField.setText(String.valueOf(bundle.getString("location")));
+        mOrgField.setText(String.valueOf(bundle.getString("org")));
         final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
         mUpdateButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -71,10 +74,12 @@ public class EditEventFragment extends Fragment {
                 String date = mDateField.getText().toString();
                 String time = mTimeField.getText().toString();
                 String location = mLocationField.getText().toString();
+                String org = mOrgField.getText().toString();
                 mDatabase.child("events").child(dataSnap).child("name").setValue(name);
                 mDatabase.child("events").child(dataSnap).child("date").setValue(date);
                 mDatabase.child("events").child(dataSnap).child("time").setValue(time);
                 mDatabase.child("events").child(dataSnap).child("location").setValue(location);
+                mDatabase.child("events").child(dataSnap).child("org").setValue(org);
                 Toast.makeText(EditEventFragment.this.getActivity(), "Event Updated", Toast.LENGTH_SHORT).show();
                 getFragmentManager().popBackStackImmediate();
             }
