@@ -10,6 +10,7 @@ public class Event {
     private String mDate;
     private String mTime;
     private String mLocation;
+    private String mOrg;
 
     public Event(){
         mId = UUID.randomUUID();
@@ -34,5 +35,9 @@ public class Event {
     public String getLocation(){return mLocation;}
 
     public void setLocation(String location){mLocation = location;}
+
+    public String getOrg(){return mOrg;}
+
+    public void setOrg(String org){mOrg = org;}
 
 }

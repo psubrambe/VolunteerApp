@@ -22,6 +22,21 @@
         />
 
     <TextView
+        android:id="@+id/event_org_header"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/eventOrg"
+        android:textSize="8pt"
+        />
+
+    <TextView
+        android:id="@+id/event_org"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text=""
+        />
+
+    <TextView
         android:id="@+id/event_date_header"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

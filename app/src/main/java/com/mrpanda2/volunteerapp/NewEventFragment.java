@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,17 +26,21 @@ public class NewEventFragment extends Fragment {
     private EditText mTimeField;
     private EditText mLocationField;
     private Button mCreateButton;
+    private FirebaseUser mUser;
     private DatabaseReference mDatabase;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         mEvent = new Event();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_new_event, container, false);
+
+        mEvent.setOrg(mUser.getDisplayName());
 
         //Event name
         mNameField = (EditText) v.findViewById(R.id.new_event_name);
