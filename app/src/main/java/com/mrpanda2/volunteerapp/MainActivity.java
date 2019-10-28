@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        organizationSignUpButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, organizationSignUpPage.class);
+                startActivity(intent);
+            }
+        });
+
         volunteerSignInButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 SignInUser();
