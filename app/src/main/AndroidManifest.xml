@@ -17,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".volunteerSignInPage"
+        <activity android:name=".VolunteerSignInActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mrpanda2.volunteerapp.volunteerSignInPage" />
+                android:value="com.mrpanda2.volunteerapp.VolunteerSignInActivity" />
         </activity>
         <activity android:name=".organizationSignInPage"
 

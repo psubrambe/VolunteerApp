@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button volunteerSignInButton;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 Toast.makeText(MainActivity.this, "Sign in successful",
                                         Toast.LENGTH_SHORT).show();
                                 finish();
-                                Intent intent = new Intent(MainActivity.this, volunteerSignInPage.class);
+                                Intent intent = new Intent(MainActivity.this, VolunteerSignInActivity.class);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(MainActivity.this, "Couldn't Sign in, try again",
