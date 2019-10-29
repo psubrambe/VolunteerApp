@@ -11,6 +11,7 @@ public class Event {
     private String mTime;
     private String mLocation;
     private String mOrg;
+    private String mOrgId;
 
     public Event(){
         mId = UUID.randomUUID();
@@ -39,5 +40,9 @@ public class Event {
     public String getOrg(){return mOrg;}
 
     public void setOrg(String org){mOrg = org;}
+
+    public String getOrgId() {return mOrgId;}
+
+    public void setOrgId(String orgid) {mOrgId = orgid;}
 
 }

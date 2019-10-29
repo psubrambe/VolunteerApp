@@ -41,6 +41,7 @@ public class NewEventFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_new_event, container, false);
 
         mEvent.setOrg(mUser.getDisplayName());
+        mEvent.setOrgId(mUser.getUid());
 
         //Event name
         mNameField = (EditText) v.findViewById(R.id.new_event_name);

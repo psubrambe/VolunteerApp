@@ -21,6 +21,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -104,40 +106,49 @@ public class ShowEventFragment extends Fragment {
                 }
 
                 if (userType.equals("org")) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        final String dataSnap = ds.getKey();
-                        final String date = ds.child("date").getValue(String.class);
-                        final String location = ds.child("location").getValue(String.class);
-                        final String name = ds.child("name").getValue(String.class);
-                        final String time = ds.child("time").getValue(String.class);
-                        final String org = ds.child("org").getValue(String.class);
-                        Log.d("TAG", date + " / " + location + " / " + name + "/" + time);
-                        list.add(time);
-                        TableRow row = new TableRow(getActivity());
-                        row.setWeightSum(4);
-                        TextView tv1 = new TextView(getActivity());
-                        tv1.setText(date + " / " + location + " / " + name + "/" + time);
-                        tv1.setTextSize(20);
-                        tv1.setMaxLines(3);
-                        tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                                TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
-                        row.addView(tv1);
-                        row.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                EditEventFragment secondFragment = new EditEventFragment();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("date", date);
-                                bundle.putString("location", location);
-                                bundle.putString("name", name);
-                                bundle.putString("time", time);
-                                bundle.putString("org", org);
-                                bundle.putString("dataSnap", dataSnap);
-                                secondFragment.setArguments(bundle);
-                                getFragmentManager().beginTransaction().replace(R.id.show_event_fragment_container, secondFragment).addToBackStack(null).commit();
-                            }
-                        });
 
-                        tableLayout.addView(row);
+                    FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        final String orgId = ds.child("orgId").getValue(String.class);
+
+                        if (orgId != null && orgId.equals(mUser.getUid())){
+
+                            final String dataSnap = ds.getKey();
+                            final String date = ds.child("date").getValue(String.class);
+                            final String location = ds.child("location").getValue(String.class);
+                            final String name = ds.child("name").getValue(String.class);
+                            final String time = ds.child("time").getValue(String.class);
+                            final String org = ds.child("org").getValue(String.class);
+                            Log.d("TAG", date + " / " + location + " / " + name + "/" + time);
+                            list.add(time);
+                            TableRow row = new TableRow(getActivity());
+                            row.setWeightSum(4);
+                            TextView tv1 = new TextView(getActivity());
+                            tv1.setText(date + " / " + location + " / " + name + "/" + time);
+                            tv1.setTextSize(20);
+                            tv1.setMaxLines(3);
+                            tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                                    TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                            row.addView(tv1);
+                            row.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    EditEventFragment secondFragment = new EditEventFragment();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("date", date);
+                                    bundle.putString("location", location);
+                                    bundle.putString("name", name);
+                                    bundle.putString("time", time);
+                                    bundle.putString("org", org);
+                                    bundle.putString("dataSnap", dataSnap);
+                                    secondFragment.setArguments(bundle);
+                                    getFragmentManager().beginTransaction().replace(R.id.show_event_fragment_container, secondFragment).addToBackStack(null).commit();
+                                }
+                            });
+
+                            tableLayout.addView(row);
+                        }
                     }
                 }
 
