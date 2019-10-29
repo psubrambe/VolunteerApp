@@ -9,7 +9,7 @@
     tools:context=".VolunteerSignInActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/vol_edit_profile"
         android:layout_width="194dp"
         android:layout_height="110dp"
 
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/vol_events_button"
         android:layout_width="194dp"
         android:layout_height="110dp"
 
@@ -33,10 +33,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/view_edit_vol_data"
         android:layout_width="194dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="300dp"
         android:text="View/Edit Volunteer Data"
         app:layout_constraintEnd_toEndOf="parent"
