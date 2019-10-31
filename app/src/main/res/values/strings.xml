@@ -29,5 +29,8 @@
 
     <string name="typeid">typeid</string>
 
+    <string name="clockin">Clock In</string>
+    <string name="clockout">Clock Out</string>
+
 
 </resources>
