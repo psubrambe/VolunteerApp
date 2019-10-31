@@ -5,8 +5,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class VolunteerSignInActivity extends AppCompatActivity {
@@ -16,11 +17,19 @@ public class VolunteerSignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.volunteer_sign_in);
+        setContentView(R.layout.fragment_container);
         Log.d("Fragment Lifecyle", "Working!");
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mName = findViewById(R.id.volunteer_name);
-        mName.setText(mUser.getDisplayName());
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+
+        if (fragment == null){
+            fragment = new VolProfileFragment();
+            fm.beginTransaction()
+                    .add(R.id.fragment_container, fragment)
+                    .commit();
+        }
+
     }
 
 }

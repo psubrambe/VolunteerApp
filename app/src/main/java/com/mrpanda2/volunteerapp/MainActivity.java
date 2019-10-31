@@ -3,7 +3,9 @@ package com.mrpanda2.volunteerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -186,6 +188,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void SendToVolProfile(){
         //User is successfully registered and logged in
+        //Save Volunteer status to shared preferences
+        SharedPreferences sharedPref = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.typeid), "vol");
+        editor.commit();
+
         //start Profile Activity here
         Toast.makeText(MainActivity.this, "Sign in successful",
                 Toast.LENGTH_SHORT).show();
@@ -196,6 +204,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void SendToOrgProfile(){
         //User is successfully registered and logged in
+        //Save Organization status to shared preferences
+        SharedPreferences sharedPref = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.typeid), "org");
+        editor.commit();
+
         //start Profile Activity here
         Toast.makeText(MainActivity.this, "Sign in successful",
                 Toast.LENGTH_SHORT).show();

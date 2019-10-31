@@ -31,13 +31,12 @@ public class EventFragment extends Fragment {
     private TextView mTime;
     private TextView mLocation;
     private TextView mOrg;
-    private Button mDeleteButton;
     private DatabaseReference mDatabase;
     private FirebaseUser mUser;
 
     @Override public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        /*mUser = FirebaseAuth.getInstance().getCurrentUser();
         mEvent = new Event();
         final UUID eventId = (UUID) getActivity().getIntent()
                 .getSerializableExtra(EventActivity.EXTRA_EVENT_ID);
@@ -67,7 +66,7 @@ public class EventFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             //nothing
             }
-        });
+        });*/
     }
 
     @Override
@@ -80,17 +79,14 @@ public class EventFragment extends Fragment {
         mLocation =  v.findViewById(R.id.event_location);
         mOrg = v.findViewById(R.id.event_org);
 
-        mDeleteButton =  v.findViewById(R.id.delete_button);
-        mDeleteButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("events").child(mEvent.getId().toString()).removeValue();
-                Toast.makeText(EventFragment.this.getActivity(), "Event Deleted", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EventFragment.this.getActivity(), organizationSignInPage.class);
-                startActivity(intent);
-            }
-        });
+        Bundle bundle = getArguments();
+        mName.setText(String.valueOf(bundle.getString("name")));
+        mDate.setText(String.valueOf(bundle.getString("date")));
+        mTime.setText(String.valueOf(bundle.getString("time")));
+        mLocation.setText(String.valueOf(bundle.getString("location")));
+        mOrg.setText(String.valueOf(bundle.getString("org")));
+
+
         return v;
     }
 }
