@@ -15,23 +15,35 @@
         android:text=""
         />
 
-    <EditText
+    <TextView
         android:id="@+id/new_event_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/eventDate"
-        android:inputType="text"
         android:text=""
         />
 
+    <Button
+        android:id="@+id/new_event_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Date"
+        />
 
-    <EditText
+
+    <TextView
         android:id="@+id/new_event_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/eventTime"
-        android:inputType="text"
         android:text=""
+        />
+
+    <Button
+        android:id="@+id/new_event_time_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Time"
         />
 
     <EditText
