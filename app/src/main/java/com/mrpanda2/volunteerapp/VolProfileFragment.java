@@ -18,7 +18,7 @@ public class VolProfileFragment extends Fragment {
     private FirebaseUser mUser;
     private TextView mVolName;
     private Button mShowEventButton;
-
+    private Button mMapButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -33,6 +33,7 @@ public class VolProfileFragment extends Fragment {
         mVolName.setText(mUser.getDisplayName());
 
         mShowEventButton = v.findViewById(R.id.vol_events_button);
+
         mShowEventButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -40,6 +41,15 @@ public class VolProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        mMapButton = v.findViewById(R.id.map_button);
+        mMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         return v;
 
