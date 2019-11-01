@@ -13,8 +13,11 @@ public class VolunteerSession {
     private String mTimeOut;
     private String mDate;
     private long mDuration;
+    private String mIdString;
+    private long mSessionClosed;
 
-    public VolunteerSession() {mId = UUID.randomUUID();}
+    public VolunteerSession() {mId = UUID.randomUUID();
+    mSessionClosed = 0;}
 
     public UUID getId(){return mId;}
 
@@ -53,5 +56,17 @@ public class VolunteerSession {
     public void setDuration(long mins){
         mDuration = mins;
     }
+
+    public String getmIdString (){return mIdString;}
+
+    public void setIdString(String id){mIdString = id;}
+
+    public long getActive(){return mSessionClosed;}
+
+    //0 is open, 1 is closed
+    public void closeSession(){mSessionClosed = 1;}
+
+    //for recyclerviews
+    public void setClosedStatus(long status){mSessionClosed = status;}
 
 }
