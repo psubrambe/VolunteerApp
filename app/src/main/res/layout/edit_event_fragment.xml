@@ -61,5 +61,12 @@
             android:text="Delete Event"
             />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/org_session_list"
+            android:layout_width="match_parent"
+            android:layout_height="394dp"
+            android:layout_weight="1" />
+
+
 
 </LinearLayout>

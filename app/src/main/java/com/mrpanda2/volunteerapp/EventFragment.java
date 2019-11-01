@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
@@ -92,6 +95,18 @@ public class EventFragment extends Fragment {
         mClockOutButton = v.findViewById(R.id.clock_out_button);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        //Create table and add header
+        final TableLayout tableLayout = v.findViewById(R.id.vol_event_table);
+        TableRow row = new TableRow(getActivity());
+        row.setWeightSum(4);
+        TextView header = new TextView(getActivity());
+        header.setText("Clock In       Clock Out       Duration");
+        header.setTextSize(20);
+        header.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+        row.addView(header);
+        tableLayout.addView(row);
+
 
 
         final Bundle bundle = getArguments();
@@ -128,12 +143,28 @@ public class EventFragment extends Fragment {
                     int DATE = cal.get(Calendar.DATE);
                     String dateText = MONTH + "/" + DATE + "/" + YEAR;
                     mSession.setDate(dateText);
-                    //set time in from timestamp (manipulate for readabliity on request)
+                    //set time in from timestamp (manipulate for readability on request)
                     mSession.setTimeIn(timeIn.toString());
                     //set time out to null
                     mSession.setTimeOut("TBD");
                     //save session item to database
                     mDatabase.child("sessions").child(mSession.getId().toString()).setValue(mSession);
+
+                    //add session to table view
+                    TableRow row = new TableRow(getActivity());
+                    row.setWeightSum(4);
+                    TextView clockInRow = new TextView(getActivity());
+                    //format timestamp
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm aa");
+                    //use timestamp from above as clock in time
+                    String clockIn = format.format(timeIn);
+                    clockInRow.setText(clockIn);
+                    clockInRow.setTextSize(18);
+                    clockInRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                            TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                    row.addView(clockInRow);
+                    tableLayout.addView(row);
+                    //inform user of successful clock in
                     Toast.makeText(EventFragment.this.getActivity(), "Clocked In", Toast.LENGTH_SHORT).show();
                 }
 
@@ -160,6 +191,37 @@ public class EventFragment extends Fragment {
                     mSession.setDuration(minutes);
                     mDatabase.child("sessions").child(mSession.getId().toString()).child("timeOut").setValue(mSession.getTimeOut());
                     mDatabase.child("sessions").child(mSession.getId().toString()).child("duration").setValue(mSession.getDuration());
+
+                    //remove previous row from table for replacement
+                    int childCount = tableLayout.getChildCount();
+                    tableLayout.removeView(tableLayout.getChildAt(childCount - 1));
+
+                    //add new row to update clock out and duration use time in, time out and convert minutes above
+                    //convert minutes
+                    String duration;
+                    if (minutes > 59){
+                        long hours = minutes / 60;
+                        long minuteModulus = minutes % 60;
+                        duration = hours + " hrs " + minuteModulus + " mins";
+                    }
+                    else{
+                        duration = minutes + " mins";
+                    }
+                    //format timestamps
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm aa");
+                    String clockIn = format.format(timeIn);
+                    String clockOut = format.format(timeOut);
+                    //add modified row
+                    TableRow row = new TableRow(getActivity());
+                    row.setWeightSum(4);
+                    TextView clockOutRow = new TextView(getActivity());
+                    clockOutRow.setText(clockIn + "       " + clockOut + "        " + duration);
+                    clockOutRow.setTextSize(18);
+                    clockOutRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                            TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                    row.addView(clockOutRow);
+                    tableLayout.addView(row);
+                    //inform user of successful clock out
                     Toast.makeText(EventFragment.this.getActivity(), "Clocked Out", Toast.LENGTH_SHORT).show();
                 }
             }
