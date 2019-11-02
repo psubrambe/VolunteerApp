@@ -1,18 +1,12 @@
 package com.mrpanda2.volunteerapp;
 
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,15 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import static android.content.Intent.getIntent;
-import static android.content.Intent.getIntentOld;
 
 public class EditEventFragment extends Fragment {
     private Event mEvent;
-
     private EditText mNameField;
     private EditText mDateField;
     private EditText mTimeField;
@@ -55,7 +43,6 @@ public class EditEventFragment extends Fragment {
         Bundle bundle = getArguments();
         final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        populateList(dataSnap);
     }
 
     @Override
@@ -144,7 +131,4 @@ public class EditEventFragment extends Fragment {
         return v;
     }
 
-    public void populateList(final String dataSnap) {
-
-    }
 }

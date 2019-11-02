@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Date Range"
+        android:text="@string/date_range"
     />
 
     <TextView
         android:id="@+id/analysis_all_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total Hours            # Sessions"
+        android:text="@string/total_hours_sessions"
         android:gravity='center'
         />
 
@@ -38,7 +38,7 @@
         android:id="@+id/calculate_indv_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calculate Selected Volunteer Hours"
+        android:text="@string/calculate_selected_volunteer_hours"
         />
 
 
@@ -46,7 +46,7 @@
         android:id="@+id/analysis_indv_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Individual Hours            # Sessions"
+        android:text="@string/individual_hours_sessions"
         android:gravity='center'
         />
 

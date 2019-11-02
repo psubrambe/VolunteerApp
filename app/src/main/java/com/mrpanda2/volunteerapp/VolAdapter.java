@@ -1,8 +1,6 @@
 package com.mrpanda2.volunteerapp;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class VolAdapter extends RecyclerView.Adapter {
     ArrayList<String> vols;
@@ -70,10 +65,6 @@ public class VolAdapter extends RecyclerView.Adapter {
                 Toast.makeText(mContext, "Selected", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
 
     }
 

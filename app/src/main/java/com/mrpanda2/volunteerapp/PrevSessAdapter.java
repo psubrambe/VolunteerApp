@@ -1,29 +1,21 @@
 package com.mrpanda2.volunteerapp;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class PrevSessAdapter extends RecyclerView.Adapter {
     ArrayList<VolunteerSession> sessions;
@@ -64,7 +56,6 @@ public class PrevSessAdapter extends RecyclerView.Adapter {
         }
         ((ItemHolder)holder).mOut.setText(clockOut);
         ((ItemHolder)holder).mDuration.setText(Long.toString(sessions.get(position).getDuration()) + " mins");
-
 
     }
 

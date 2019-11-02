@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No start date selected."
+        android:text="@string/no_start_date_selected"
     />
 
     <Button
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Set start date"
+        android:text="@string/set_start_date"
         />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No end date selected."
+        android:text="@string/no_end_date_selected"
         />
 
     <Button
@@ -36,14 +36,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Set end date" />
+        android:text="@string/set_end_date" />
 
     <Button
         android:id="@+id/date_submit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Calculate Hours"
+        android:text="@string/calculate_hours"
         />
 
 
