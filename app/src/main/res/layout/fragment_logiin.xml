@@ -24,7 +24,7 @@
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="100dp"
         android:text="@string/newEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -48,7 +48,7 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="125dp"
+                android:layout_marginTop="200dp"
                 android:text="@string/events"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
@@ -59,7 +59,7 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="400dp"
                 android:text="@string/map"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
@@ -70,7 +70,7 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="375dp"
+                android:layout_marginTop="300dp"
                 android:text="@string/calculate_donated_hours"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
