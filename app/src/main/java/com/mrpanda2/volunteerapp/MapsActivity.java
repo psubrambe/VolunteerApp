@@ -179,6 +179,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
                     }
                 }
+                else if (userType.equals("org")){
+                    FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        final String orgId = ds.child("orgId").getValue(String.class);
+
+                        if (orgId != null && orgId.equals(mUser.getUid())) {
+                            final String dataSnap = ds.getKey();
+                            final String date = ds.child("date").getValue(String.class);
+                            final String location = ds.child("location").getValue(String.class);
+                            final String name = ds.child("name").getValue(String.class);
+                            final String time = ds.child("time").getValue(String.class);
+                            final String org = ds.child("org").getValue(String.class);
+                            LatLng eventLocation = getAddressLocation(location);
+                            mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
+                        }
+                    }
+                }
             }
 
             @Override

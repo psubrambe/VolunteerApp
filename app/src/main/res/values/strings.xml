@@ -49,4 +49,5 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="view_previous_volunteer_sessions">View Previous Volunteer Sessions</string>
     <string name="volunteer_name">Volunteer Name</string>
+    <string name="map">View Your Events</string>
 </resources>
