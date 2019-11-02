@@ -1,8 +1,7 @@
 package com.mrpanda2.volunteerapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,26 +11,18 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
-
 
 public class EventFragment extends Fragment {
     private Event mEvent;
@@ -49,37 +40,6 @@ public class EventFragment extends Fragment {
 
     @Override public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        /*mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mEvent = new Event();
-        final UUID eventId = (UUID) getActivity().getIntent()
-                .getSerializableExtra(EventActivity.EXTRA_EVENT_ID);
-        mEvent.setId(eventId);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference event = mDatabase.child("events").child(eventId.toString());
-
-        event.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("Tag", "ACCESSED");
-
-                mEvent.setName(dataSnapshot.child("name").getValue().toString());
-                mEvent.setDate(dataSnapshot.child("date").getValue().toString());
-                mEvent.setTime(dataSnapshot.child("time").getValue().toString());
-                mEvent.setLocation(dataSnapshot.child("location").getValue().toString());
-                mEvent.setOrg(dataSnapshot.child("organization").getValue().toString());
-
-                mName.setText(mEvent.getName());
-                mDate.setText(mEvent.getDate());
-                mTime.setText(mEvent.getTime());
-                mLocation.setText(mEvent.getLocation());
-                mOrg.setText(mEvent.getOrg());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            //nothing
-            }
-        });*/
     }
 
     @Override
@@ -107,8 +67,6 @@ public class EventFragment extends Fragment {
         row.addView(header);
         tableLayout.addView(row);
 
-
-
         final Bundle bundle = getArguments();
         mName.setText(String.valueOf(bundle.getString("name")));
         mDate.setText(String.valueOf(bundle.getString("date")));
@@ -116,17 +74,15 @@ public class EventFragment extends Fragment {
         mLocation.setText(String.valueOf(bundle.getString("location")));
         mOrg.setText(String.valueOf(bundle.getString("org")));
 
-
         mClockInButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
-                if (mSession != null && sessionActive == 1){
+                if (mSession != null && mSession.getActive() == 0){
                     Toast.makeText(EventFragment.this.getActivity(), "Current session not closed.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //get date and timestamp
-                    sessionActive = 1;
                     Date date = new Date();
                     Timestamp timeIn = new Timestamp(date.getTime());
                     //save basic vol and event info
@@ -171,16 +127,15 @@ public class EventFragment extends Fragment {
             }
         });
 
-
         mClockOutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
-                if (mSession == null || mSession.getDuration() != 0 || sessionActive == 0){
+                if (mSession == null || mSession.getDuration() != 0 || mSession.getActive() == 1){
                     Toast.makeText(EventFragment.this.getActivity(), "No active session.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    sessionActive = 0;
+                    mSession.closeSession();
                     Date date = new Date();
                     Timestamp timeOut = new Timestamp(date.getTime());
                     mSession.setTimeOut(timeOut.toString());
@@ -191,6 +146,7 @@ public class EventFragment extends Fragment {
                     mSession.setDuration(minutes);
                     mDatabase.child("sessions").child(mSession.getId().toString()).child("timeOut").setValue(mSession.getTimeOut());
                     mDatabase.child("sessions").child(mSession.getId().toString()).child("duration").setValue(mSession.getDuration());
+                    mDatabase.child("sessions").child(mSession.getId().toString()).child("active").setValue(mSession.getActive());
 
                     //remove previous row from table for replacement
                     int childCount = tableLayout.getChildCount();

@@ -15,16 +15,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class OrgProfileFragment extends Fragment {
     private FirebaseUser mUser;
-    private FirebaseAuth mAuth;
     private TextView mOrgName;
     private Button mNewEventButton;
     private Button showEventButton;
-    private Button mSignOutButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -51,15 +48,7 @@ public class OrgProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        mSignOutButton = v.findViewById(R.id.sign_out_button);
-        mSignOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
         return v;
     }
 

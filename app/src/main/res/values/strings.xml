@@ -1,36 +1,53 @@
 <resources>
     <string name="app_name">VolunteerApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="orgName">Organization Name</string>
     <string name="newEvent">New Event</string>
     <string name="events">Events</string>
     <string name="viewEditOrgData">View/Edit Organization Data</string>
     <string name="editProfile">Edit Profile</string>
-
     <string name="eventName">Event Name</string>
     <string name="eventTime">Event Time</string>
     <string name="eventLocation">Event Location</string>
     <string name="eventDate">Event Date</string>
     <string name="eventOrg">Event Organization</string>
-
     <string name="createEvent">Create Event</string>
-
     <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="Name">Name</string>
-
     <string name="OrganizationSignUp">Organization Sign Up</string>
     <string name="VolunteerSignUp">Volunteer Sign Up</string>
-
     <string name="SignUpPortal">Sign Up Portal</string>
-
     <string name="typeid">typeid</string>
-
     <string name="clockin">Clock In</string>
     <string name="clockout">Clock Out</string>
-
-
+    <string name="title_activity_maps">Map</string>
+    <string name="volunteer_sign_up">Volunteer Sign Up</string>
+    <string name="organization_sign_up">Organization Sign Up</string>
+    <string name="sign_in_o">Sign In(O)</string>
+    <string name="sign_in_v">Sign In(V)</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="sign_in_portal">SIGN IN PORTAL</string>
+    <string name="update_event">Update Event</string>
+    <string name="delete_event">Delete Event</string>
+    <string name="calculate_donated_hours">Calculate Donated Hours</string>
+    <string name="set_time">Set Time</string>
+    <string name="set_date">Set Date</string>
+    <string name="no_start_date_selected">No start date selected.</string>
+    <string name="set_start_date">Set start date</string>
+    <string name="no_end_date_selected">No end date selected.</string>
+    <string name="set_end_date">Set end date</string>
+    <string name="calculate_hours">Calculate Hours</string>
+    <string name="date_range">Date Range</string>
+    <string name="total_hours_sessions">Total Hours # Sessions</string>
+    <string name="calculate_selected_volunteer_hours">Calculate Selected Volunteer Hours</string>
+    <string name="individual_hours_sessions">Individual Hours # Sessions</string>
+    <string name="previous_volunteer_sessions">Previous Volunteer Sessions</string>
+    <string name="force_clock_out">Force clock out</string>
+    <string name="duration">Duration</string>
+    <string name="select_volunteer">Select Volunteer</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="view_previous_volunteer_sessions">View Previous Volunteer Sessions</string>
+    <string name="volunteer_name">Volunteer Name</string>
+    <string name="map">View Your Events</string>
 </resources>

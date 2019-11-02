@@ -52,13 +52,13 @@
             android:id="@+id/update_event_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update Event"
+            android:text="@string/update_event"
             />
         <Button
             android:id="@+id/delete_event_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delete Event"
+            android:text="@string/delete_event"
             />
 
         <androidx.recyclerview.widget.RecyclerView

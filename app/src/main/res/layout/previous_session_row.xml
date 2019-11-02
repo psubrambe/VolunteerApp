@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="4">
+    android:weightSum="4"
+    android:padding="3dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
@@ -11,15 +12,15 @@
         android:weightSum="4">
 
         <TextView
-            android:id="@+id/session_list_name_header"
+            android:id="@+id/prev_list_event_header"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="@string/Name" />
+            android:text="Event" />
 
         <TextView
-            android:id="@+id/session_list_in_header"
+            android:id="@+id/prev_list_in_header"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -27,7 +28,7 @@
             android:text="@string/clockin" />
 
         <TextView
-            android:id="@+id/session_list_out_header"
+            android:id="@+id/prev_list_out_header"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -35,12 +36,12 @@
             android:text="@string/clockout" />
 
         <TextView
-            android:id="@+id/session_list_duration_header"
+            android:id="@+id/prev_list_duration_header"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="@string/duration"
+            android:text="Duration"
             />
 
     </LinearLayout>
@@ -51,7 +52,7 @@
         android:weightSum="4">
 
         <TextView
-            android:id="@+id/session_list_name"
+            android:id="@+id/prev_list_event"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -59,7 +60,7 @@
             android:text="" />
 
         <TextView
-            android:id="@+id/session_list_in"
+            android:id="@+id/prev_list_in"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -67,7 +68,7 @@
             android:text="" />
 
         <TextView
-            android:id="@+id/session_list_out"
+            android:id="@+id/prev_list_out"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -75,7 +76,7 @@
             android:text="" />
 
         <TextView
-            android:id="@+id/session_list_duration"
+            android:id="@+id/prev_list_duration"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -85,21 +86,8 @@
 
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
 
-        <Button
-            android:id="@+id/forceoutbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/force_clock_out"
-            />
-
-    </LinearLayout>
 
 
 
 </LinearLayout>
-
