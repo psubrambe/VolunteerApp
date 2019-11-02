@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mrpanda2.volunteerapp">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,56 +26,75 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VolunteerSignInActivity"
+        <activity
+            android:name=".VolunteerSignInActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.VolunteerSignInActivity" />
         </activity>
-        <activity android:name=".organizationSignInPage"
-
+        <activity
+            android:name=".organizationSignInPage"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.organizationSignInPage" />
         </activity>
-
-        <activity android:name=".volunteerSignUpPage"
+        <activity
+            android:name=".volunteerSignUpPage"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.volunteerSignUpPage" />
         </activity>
-        <activity android:name=".NewEventActivity"
+        <activity
+            android:name=".NewEventActivity"
             android:parentActivityName=".EventActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.NewEventActivity" />
         </activity>
-        <activity android:name=".EventActivity"
+        <activity
+            android:name=".EventActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.EventActivity" />
         </activity>
-        <activity android:name=".ShowEventActivity"
+        <activity
+            android:name=".ShowEventActivity"
             android:parentActivityName=".EventActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.ShowEventActivity" />
         </activity>
-        <activity android:name=".EditEventActivity"
+        <activity
+            android:name=".EditEventActivity"
             android:parentActivityName=".ShowEventActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.EditEventActivity" />
         </activity>
-        <activity android:name=".organizationSignUpPage"
+        <activity
+            android:name=".organizationSignUpPage"
             android:parentActivityName=".ShowEventActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.organizationSignUpPage" />
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAg6oyWASF2VmkX3bpq6I7wf4oGV_bBDVM"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".EventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.MapsActivity" />
         <activity android:name=".OrgAnalysisActivity"
             android:parentActivityName=".organizationSignInPage">
             <meta-data

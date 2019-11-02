@@ -20,6 +20,7 @@
     <string name="typeid">typeid</string>
     <string name="clockin">Clock In</string>
     <string name="clockout">Clock Out</string>
+    <string name="title_activity_maps">Map</string>
     <string name="volunteer_sign_up">Volunteer Sign Up</string>
     <string name="organization_sign_up">Organization Sign Up</string>
     <string name="sign_in_o">Sign In(O)</string>
