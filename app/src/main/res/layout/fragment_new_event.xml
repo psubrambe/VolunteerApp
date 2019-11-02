@@ -27,7 +27,7 @@
         android:id="@+id/new_event_date_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Date"
+        android:text="@string/set_date"
         />
 
 
@@ -43,7 +43,7 @@
         android:id="@+id/new_event_time_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Time"
+        android:text="@string/set_time"
         />
 
     <EditText

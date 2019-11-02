@@ -95,6 +95,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.MapsActivity" />
+        <activity android:name=".OrgAnalysisActivity"
+            android:parentActivityName=".organizationSignInPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.OrgAnalysisActivity" />
+        </activity>
+        <activity android:name=".PreviousVolSessions"
+            android:parentActivityName=".VolunteerSignInActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.PreviousVolSessions" />
         </activity>
     </application>
 

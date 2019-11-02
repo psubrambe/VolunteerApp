@@ -19,6 +19,7 @@ public class VolProfileFragment extends Fragment {
     private TextView mVolName;
     private Button mShowEventButton;
     private Button mMapButton;
+    private Button mPreviousSessions;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -50,6 +51,15 @@ public class VolProfileFragment extends Fragment {
             }
         });
 
+
+        mPreviousSessions = v.findViewById(R.id.previous_sessions);
+        mPreviousSessions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), PreviousVolSessions.class);
+                startActivity(intent);
+            }
+        });
 
         return v;
 

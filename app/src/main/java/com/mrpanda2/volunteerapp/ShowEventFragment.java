@@ -1,12 +1,8 @@
 package com.mrpanda2.volunteerapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +12,8 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -109,7 +103,6 @@ public class ShowEventFragment extends Fragment {
 
                     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         final String orgId = ds.child("orgId").getValue(String.class);
 
@@ -151,8 +144,6 @@ public class ShowEventFragment extends Fragment {
                         }
                     }
                 }
-
-
 
             }
 

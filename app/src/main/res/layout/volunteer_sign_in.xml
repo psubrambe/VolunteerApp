@@ -12,9 +12,8 @@
         android:id="@+id/vol_edit_profile"
         android:layout_width="194dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="500dp"
-        android:text="Edit Profile"
+        android:text="@string/edit_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +23,8 @@
         android:id="@+id/vol_events_button"
         android:layout_width="194dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="125dp"
-        android:text="Events"
+        android:text="@string/events"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +33,6 @@
         android:id="@+id/map_button"
         android:layout_width="194dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="250dp"
         android:text="View Events Map"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,11 +41,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/view_edit_vol_data"
+        android:id="@+id/previous_sessions"
         android:layout_width="194dp"
         android:layout_height="110dp"
         android:layout_marginTop="375dp"
-        android:text="View/Edit Volunteer Data"
+        android:text="@string/view_previous_volunteer_sessions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:text="Volunteer Name"
+        android:text="@string/volunteer_name"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

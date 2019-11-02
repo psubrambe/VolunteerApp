@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/org_analysis_container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:spacing="15dp">
+
+    <TextView
+        android:id="@+id/start_date_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_start_date_selected"
+    />
+
+    <Button
+        android:id="@+id/start_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/set_start_date"
+        />
+
+    <TextView
+        android:id="@+id/end_date_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_end_date_selected"
+        />
+
+    <Button
+        android:id="@+id/end_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/set_end_date" />
+
+    <Button
+        android:id="@+id/date_submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/calculate_hours"
+        />
+
+
+</LinearLayout>
