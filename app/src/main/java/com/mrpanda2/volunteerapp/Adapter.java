@@ -1,7 +1,6 @@
 package com.mrpanda2.volunteerapp;
 
 import android.content.Context;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +44,7 @@ public class Adapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+        //assign view items their text
         ((ItemHolder)holder).mName.setText(sessions.get(position).getVolName());
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm aa");
         final Timestamp timeIn = Timestamp.valueOf(sessions.get(position).getTimeIn());
@@ -67,20 +67,19 @@ public class Adapter extends RecyclerView.Adapter {
                     Toast.makeText(mContext, "Already clocked out.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
+                    //calculate duration and close session
                     Date date = new Date();
                     final Timestamp timeOut = new Timestamp(date.getTime());
                     String timeOutStringFormatted = format.format(timeOut);
                     sessions.get(position).setTimeOut(timeOutStringFormatted);
                     ((ItemHolder)holder).mOut.setText(timeOutStringFormatted);
-
                     long milliseconds = timeOut.getTime() - timeIn.getTime();
                     final long minutes = milliseconds / 60000;
                     sessions.get(position).setDuration(minutes);
                     ((ItemHolder)holder).mDuration.setText(Long.toString(minutes));
-
                     sessions.get(position).closeSession();
 
+                    //modify session in database to closeout
                     mDatabase = FirebaseDatabase.getInstance().getReference();
                     mDatabase.child("sessions").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -97,12 +96,9 @@ public class Adapter extends RecyclerView.Adapter {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        //do nothing
                         }
                     });
-
-
-
                 }
             }
         });

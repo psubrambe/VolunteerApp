@@ -174,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             }
                                         });
 
-
                             }else{
                                 Toast.makeText(MainActivity.this, "Couldn't Sign in, try again",
                                         Toast.LENGTH_SHORT).show();

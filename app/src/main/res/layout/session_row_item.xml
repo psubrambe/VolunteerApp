@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="Duration"
+            android:text="@string/duration"
             />
 
     </LinearLayout>
@@ -94,7 +94,7 @@
             android:id="@+id/forceoutbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Force clock out"
+            android:text="@string/force_clock_out"
             />
 
     </LinearLayout>

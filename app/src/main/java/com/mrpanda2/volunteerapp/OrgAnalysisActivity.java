@@ -1,7 +1,6 @@
 package com.mrpanda2.volunteerapp;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,8 +41,6 @@ public class OrgAnalysisActivity extends AppCompatActivity {
         mStart = null;
         mEnd = null;
 
-        //Calendar startCal = Calendar.getInstance();
-
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,9 +48,6 @@ public class OrgAnalysisActivity extends AppCompatActivity {
 
             }
         });
-
-
-        //Calendar endCal = Calendar.getInstance();
 
         mEndButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +77,6 @@ public class OrgAnalysisActivity extends AppCompatActivity {
                 }
             }
         });
-
 
     }
 

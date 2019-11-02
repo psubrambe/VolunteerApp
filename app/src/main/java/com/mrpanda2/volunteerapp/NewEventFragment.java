@@ -30,7 +30,6 @@ import java.util.Calendar;
 public class NewEventFragment extends Fragment {
     private Event mEvent;
     private EditText mNameField;
-    //private EditText mDateField;
     private TextView mDateField;
     private Button mDateButton;
     private TextView mTimeField;
@@ -71,23 +70,6 @@ public class NewEventFragment extends Fragment {
             }
         });
 
-        //DATE
-        /*mDateField = (EditText) v.findViewById(R.id.new_event_date);
-        mDateField.addTextChangedListener(new TextWatcher(){
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){
-                //blank
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int count, int after){
-                mEvent.setDate(s.toString());
-            }
-            @Override
-            public void afterTextChanged(Editable s){
-                //blank
-            }
-        });*/
-
         mDateField = v.findViewById(R.id.new_event_date);
         mDateButton = v.findViewById(R.id.new_event_date_button);
         mDateButton.setOnClickListener(new View.OnClickListener(){
@@ -104,24 +86,6 @@ public class NewEventFragment extends Fragment {
                 handleTime();
             }
         });
-
-
-        //Event Time
-        /*mTimeField = (EditText) v.findViewById(R.id.new_event_time);
-        mTimeField.addTextChangedListener(new TextWatcher(){
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){
-                //blank
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int count, int after){
-                mEvent.setTime(s.toString());
-            }
-            @Override
-            public void afterTextChanged(Editable s){
-                //blank
-            }
-        });*/
 
         //Event Location
         mLocationField = (EditText) v.findViewById(R.id.new_event_location);
@@ -212,7 +176,6 @@ public class NewEventFragment extends Fragment {
         timePicker.show();
 
     }
-
 
 
 }
