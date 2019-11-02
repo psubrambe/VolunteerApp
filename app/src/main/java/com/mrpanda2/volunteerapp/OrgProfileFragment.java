@@ -18,6 +18,7 @@ public class OrgProfileFragment extends Fragment {
     private TextView mOrgName;
     private Button mNewEventButton;
     private Button showEventButton;
+    private Button mCalculateButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,6 +46,14 @@ public class OrgProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OrgProfileFragment.this.getActivity(), ShowEventActivity.class);
+                startActivity(intent);
+            }
+        });
+        mCalculateButton = v.findViewById(R.id.calculate_button);
+        mCalculateButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), OrgAnalysisActivity.class);
                 startActivity(intent);
             }
         });
