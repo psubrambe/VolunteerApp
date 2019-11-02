@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static android.content.Intent.getIntent;
 import static android.content.Intent.getIntentOld;
@@ -114,9 +115,16 @@ public class EditEventFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.child("eventId").getValue().equals(dataSnap)) {
                         VolunteerSession volSess = new VolunteerSession();
+                        volSess.setIdString(snapshot.getKey());
                         volSess.setVolName(snapshot.child("volName").getValue().toString());
                         volSess.setTimeIn(snapshot.child("timeIn").getValue().toString());
                         volSess.setTimeOut(snapshot.child("timeOut").getValue().toString());
+
+                        if (snapshot.child("active").exists()) {
+                            long status = (long) snapshot.child("active").getValue();
+                            volSess.setClosedStatus(status);
+                        }
+
                         long duration = (long) snapshot.child("duration").getValue();
                         volSess.setDuration(duration);
                         sessions.add(volSess);
@@ -124,7 +132,7 @@ public class EditEventFragment extends Fragment {
                     }
                 }
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(EditEventFragment.this.getContext()));
-                mRecyclerView.setAdapter(new Adapter(sessions));
+                mRecyclerView.setAdapter(new Adapter(sessions, EditEventFragment.this.getContext()));
             }
 
             @Override

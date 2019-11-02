@@ -121,12 +121,11 @@ public class EventFragment extends Fragment {
             @Override
             public void onClick(View v){
 
-                if (mSession != null && sessionActive == 1){
+                if (mSession != null && mSession.getActive() == 0){
                     Toast.makeText(EventFragment.this.getActivity(), "Current session not closed.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //get date and timestamp
-                    sessionActive = 1;
                     Date date = new Date();
                     Timestamp timeIn = new Timestamp(date.getTime());
                     //save basic vol and event info
@@ -176,11 +175,11 @@ public class EventFragment extends Fragment {
             @Override
             public void onClick(View v){
 
-                if (mSession == null || mSession.getDuration() != 0 || sessionActive == 0){
+                if (mSession == null || mSession.getDuration() != 0 || mSession.getActive() == 1){
                     Toast.makeText(EventFragment.this.getActivity(), "No active session.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    sessionActive = 0;
+                    mSession.closeSession();
                     Date date = new Date();
                     Timestamp timeOut = new Timestamp(date.getTime());
                     mSession.setTimeOut(timeOut.toString());
@@ -191,6 +190,7 @@ public class EventFragment extends Fragment {
                     mSession.setDuration(minutes);
                     mDatabase.child("sessions").child(mSession.getId().toString()).child("timeOut").setValue(mSession.getTimeOut());
                     mDatabase.child("sessions").child(mSession.getId().toString()).child("duration").setValue(mSession.getDuration());
+                    mDatabase.child("sessions").child(mSession.getId().toString()).child("active").setValue(mSession.getActive());
 
                     //remove previous row from table for replacement
                     int childCount = tableLayout.getChildCount();
