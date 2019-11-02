@@ -103,7 +103,7 @@ public class organizationSignUpPage extends AppCompatActivity {
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
                                 mDatabase.child("organizations").child(mUser.getUid()).setValue(mOrganization);
 
-                                Intent intent = new Intent(organizationSignUpPage.this, MainActivity.class);
+                                Intent intent = new Intent(organizationSignUpPage.this, OrgProfileFragment.class);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(organizationSignUpPage.this, "Couldn't register, try again.", Toast.LENGTH_SHORT).show();

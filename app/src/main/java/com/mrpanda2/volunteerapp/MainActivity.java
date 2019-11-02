@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,11 +32,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText email;
     EditText password;
     private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        SharedPreferences sharedPref = MainActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        String userType = sharedPref.getString(getString(R.string.typeid), "default");
+        if(userType.equals("vol") && mUser != null){
+            SendToVolProfile();
+        }
+        else if(userType.equals("org") && mUser != null){
+            SendToOrgProfile();
+        }
         setContentView(R.layout.activity_main);
         Log.d("Activity LifeCycle","Working!");
 
@@ -108,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                         return;
                                                     }
                                                 }
-                                                Toast.makeText(MainActivity.this, "Found user, but not Volunteer.",
+                                                Toast.makeText(MainActivity.this, "Not a valid volunteer.",
                                                         Toast.LENGTH_SHORT).show();
                                                 mAuth.signOut();
                                             }
@@ -164,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                         return;
                                                     }
                                                 }
-                                                Toast.makeText(MainActivity.this, "Found user, but not Organization.",
+                                                Toast.makeText(MainActivity.this, "Not a valid Organization.",
                                                         Toast.LENGTH_SHORT).show();
                                                 mAuth.signOut();
                                             }
