@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/org_analysis_fragment_view"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/analysis_date_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Date Range"
+    />
+
+    <TextView
+        android:id="@+id/analysis_all_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Hours            # Sessions"
+        android:gravity='center'
+        />
+
+    <TextView
+        android:id="@+id/analysis_all_figures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:gravity='center'
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/analysis_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="264dp" />
+
+    <Button
+        android:id="@+id/calculate_indv_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculate Selected Volunteer Hours"
+        />
+
+
+    <TextView
+        android:id="@+id/analysis_indv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Individual Hours            # Sessions"
+        android:gravity='center'
+        />
+
+    <TextView
+        android:id="@+id/analysis_indv_figures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:gravity='center'
+        />
+
+
+
+
+
+
+
+
+</LinearLayout>

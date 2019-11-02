@@ -55,12 +55,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <Button
-                android:id="@+id/editEventInformation"
+                android:id="@+id/calculate_button"
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
                 android:layout_marginTop="368dp"
-                android:text="Edit Event Info"
+                android:text="Calculate Donated Hours"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
