@@ -39,6 +39,8 @@ public class OrgAnalysisActivity extends AppCompatActivity {
         mStartButton = findViewById(R.id.start_date_button);
         mEndButton = findViewById(R.id.end_date_button);
         mSubmitButton = findViewById(R.id.date_submit_button);
+        mStart = null;
+        mEnd = null;
 
         //Calendar startCal = Calendar.getInstance();
 

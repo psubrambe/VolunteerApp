@@ -18,6 +18,7 @@ public class VolProfileFragment extends Fragment {
     private FirebaseUser mUser;
     private TextView mVolName;
     private Button mShowEventButton;
+    private Button mPreviousSessions;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -37,6 +38,15 @@ public class VolProfileFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(VolProfileFragment.this.getActivity(), ShowEventActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mPreviousSessions = v.findViewById(R.id.previous_sessions);
+        mPreviousSessions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), PreviousVolSessions.class);
                 startActivity(intent);
             }
         });

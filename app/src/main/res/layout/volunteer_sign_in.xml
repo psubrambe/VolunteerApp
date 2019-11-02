@@ -33,11 +33,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/view_edit_vol_data"
+        android:id="@+id/previous_sessions"
         android:layout_width="194dp"
         android:layout_height="110dp"
         android:layout_marginTop="300dp"
-        android:text="View/Edit Volunteer Data"
+        android:text="View Previous Volunteer Sessions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

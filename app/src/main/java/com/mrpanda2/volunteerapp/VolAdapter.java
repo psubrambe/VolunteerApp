@@ -47,67 +47,6 @@ public class VolAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
-        /*((ItemHolder)holder).mName.setText(sessions.get(position).getVolName());
-        final SimpleDateFormat format = new SimpleDateFormat("HH:mm aa");
-        final Timestamp timeIn = Timestamp.valueOf(sessions.get(position).getTimeIn());
-        String clockIn = format.format(timeIn);
-        ((ItemHolder)holder).mIn.setText(clockIn);
-        final String clockOut;
-        if (!sessions.get(position).getTimeOut().equals("TBD")){
-            Timestamp timeOut = Timestamp.valueOf(sessions.get(position).getTimeOut());
-            clockOut = format.format(timeOut);
-        }
-        else{
-            clockOut = "TBD";
-        }
-        ((ItemHolder)holder).mOut.setText(clockOut);
-        ((ItemHolder)holder).mDuration.setText(Long.toString(sessions.get(position).getDuration()));
-        ((ItemHolder)holder).mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sessions.get(position).getActive() == 1){
-                    Toast.makeText(mContext, "Already clocked out.", Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-                    Date date = new Date();
-                    final Timestamp timeOut = new Timestamp(date.getTime());
-                    String timeOutStringFormatted = format.format(timeOut);
-                    sessions.get(position).setTimeOut(timeOutStringFormatted);
-                    ((ItemHolder)holder).mOut.setText(timeOutStringFormatted);
-
-                    long milliseconds = timeOut.getTime() - timeIn.getTime();
-                    final long minutes = milliseconds / 60000;
-                    sessions.get(position).setDuration(minutes);
-                    ((ItemHolder)holder).mDuration.setText(Long.toString(minutes));
-
-                    sessions.get(position).closeSession();
-
-                    mDatabase = FirebaseDatabase.getInstance().getReference();
-                    mDatabase.child("sessions").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                                if (snapshot.getKey().equals(sessions.get(position).getmIdString())){
-                                    Log.d("Adapter", "Modified Session");
-                                    mDatabase.child("sessions").child(snapshot.getKey()).child("timeOut").setValue(timeOut.toString());
-                                    mDatabase.child("sessions").child(snapshot.getKey()).child("duration").setValue(minutes);
-                                    mDatabase.child("sessions").child(snapshot.getKey()).child("active").setValue(sessions.get(position).getActive());
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-
-                }
-            }
-        });*/
         mDatabase.child("volunteers").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
