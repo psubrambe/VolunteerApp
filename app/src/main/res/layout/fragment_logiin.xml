@@ -36,7 +36,7 @@
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="504dp"
+        android:layout_marginTop="500dp"
         android:text="@string/editProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -48,8 +48,19 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="236dp"
+                android:layout_marginTop="125dp"
                 android:text="@string/events"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/MapB"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+
+                android:layout_marginTop="250dp"
+                android:text="@string/map"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +70,7 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="368dp"
+                android:layout_marginTop="375dp"
                 android:text="@string/calculate_donated_hours"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"

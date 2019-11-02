@@ -19,6 +19,7 @@ public class OrgProfileFragment extends Fragment {
     private Button mNewEventButton;
     private Button showEventButton;
     private Button mCalculateButton;
+    private Button mMapButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -54,6 +55,14 @@ public class OrgProfileFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(OrgProfileFragment.this.getActivity(), OrgAnalysisActivity.class);
+                startActivity(intent);
+            }
+        });
+        mMapButton = v.findViewById(R.id.MapB);
+        mMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), MapsActivity.class);
                 startActivity(intent);
             }
         });
