@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class VolProfileFragment extends Fragment {
 
@@ -21,29 +23,31 @@ public class VolProfileFragment extends Fragment {
     private Button mShowEventButton;
     private Button mEditProfile;
     private Button mSignOut;
+    private DatabaseReference mDatabase;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.volunteer_sign_in, container, false);
+        mVolName = v.findViewById(R.id.volunteer_name);
+        mVolName.setText(mUser.getDisplayName());
         mEditProfile = v.findViewById(R.id.vol_edit_profile);
         mEditProfile.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                EditProfileInfoFragment secondFragment = new EditProfileInfoFragment();
-                getFragmentManager().beginTransaction().replace(R.id.show_event_fragment_container, secondFragment).addToBackStack(null).commit();
-                Intent intent = new Intent(VolProfileFragment.this.getActivity(), ShowEventActivity.class);
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), EditProfileInfoActivity.class);
                 startActivity(intent);
             }
         });
-        mVolName = v.findViewById(R.id.volunteer_name);
-        mVolName.setText(mUser.getDisplayName());
         mSignOut = v.findViewById(R.id.vol_sign_out);
         mShowEventButton = v.findViewById(R.id.vol_events_button);
         mShowEventButton.setOnClickListener(new View.OnClickListener(){
