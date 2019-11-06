@@ -41,7 +41,7 @@ public class EditEventFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mEvent = new Event();
         Bundle bundle = getArguments();
-        final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
+        //final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
