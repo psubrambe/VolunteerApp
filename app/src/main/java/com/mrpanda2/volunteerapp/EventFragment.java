@@ -1,23 +1,32 @@
 package com.mrpanda2.volunteerapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -37,6 +46,8 @@ public class EventFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseUser mUser;
     private int sessionActive;
+    private CheckBox mAttend;
+    private long mEventAttendees;
 
     @Override public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -55,6 +66,79 @@ public class EventFragment extends Fragment {
         mClockOutButton = v.findViewById(R.id.clock_out_button);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        final Bundle bundle = getArguments();
+
+        final String eventId = String.valueOf(bundle.getString("dataSnap"));
+
+        //use user id + event id as shared pref key so multiple users can use same device
+        final String userPlusEvent = mUser.getUid() + eventId;
+
+        //set shared pref and checkbox status depending on previous usage
+        mAttend = v.findViewById(R.id.attendance_checkbox);
+        final SharedPreferences sharedPref = EventFragment.this.getActivity().getSharedPreferences("attendance", Context.MODE_PRIVATE);
+        if (!sharedPref.contains(userPlusEvent)) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(userPlusEvent, false);
+            editor.commit();
+            mAttend.setChecked(false);
+        }
+        else{
+            boolean attending = sharedPref.getBoolean(userPlusEvent, false);
+            if (attending){
+                mAttend.setChecked(true);
+            }
+            else{
+                mAttend.setChecked(false);
+            }
+        }
+
+
+        mAttend.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                //get attendees #
+                mDatabase.child("events").child(eventId).child("attendees").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        mEventAttendees = (long) dataSnapshot.getValue();
+                        Log.d("EVENT", "got val");
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        //false changing to true
+                        if (sharedPref.getBoolean(userPlusEvent, false) == false){
+                            //set shared pref
+                            editor.putBoolean(userPlusEvent, true);
+                            editor.commit();
+                            //increment event in database
+                            mEventAttendees += 1;
+                            mDatabase.child("events").child(eventId).child("attendees").setValue(mEventAttendees);
+                            //toggle checkbox
+                            mAttend.setChecked(true);
+                            Log.d("EVENT", "set to true");
+                        }
+                        //true changing to false
+                        else{
+                            //set shared pref
+                            editor.putBoolean(userPlusEvent, false);
+                            editor.commit();
+                            //decrement event in database
+                            mEventAttendees -= 1;
+                            mDatabase.child("events").child(eventId).child("attendees").setValue(mEventAttendees);
+                            //toggle checkbox
+                            mAttend.setChecked(false);
+                            Log.d("EVENT", "set to false");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
+
+
         //Create table and add header
         final TableLayout tableLayout = v.findViewById(R.id.vol_event_table);
         TableRow row = new TableRow(getActivity());
@@ -68,7 +152,7 @@ public class EventFragment extends Fragment {
         tableLayout.addView(row);
 
         //not sure these are necessary, seem to be working when commented out -matt
-        final Bundle bundle = getArguments();
+        //final Bundle bundle = getArguments();
         mName.setText(String.valueOf(bundle.getString("name")));
         mDate.setText(String.valueOf(bundle.getString("date")));
         mTime.setText(String.valueOf(bundle.getString("time")));
@@ -88,7 +172,7 @@ public class EventFragment extends Fragment {
                     Timestamp timeIn = new Timestamp(date.getTime());
                     //save basic vol and event info
                     mSession = new VolunteerSession();
-                    mSession.setEventId(String.valueOf(bundle.getString("dataSnap")));
+                    mSession.setEventId(eventId);
                     mSession.setEventName(mName.getText().toString());
                     mSession.setVolId(mUser.getUid());
                     mSession.setVolName(mUser.getDisplayName());

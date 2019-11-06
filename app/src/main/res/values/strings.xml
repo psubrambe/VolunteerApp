@@ -50,4 +50,6 @@
     <string name="view_previous_volunteer_sessions">View Previous Volunteer Sessions</string>
     <string name="volunteer_name">Volunteer Name</string>
     <string name="map">View Your Events</string>
+    <string name="noattendance">No attendance data.</string>
+    <string name="i_plan_to_attend_this_event">I plan to attend this event.</string>
 </resources>
