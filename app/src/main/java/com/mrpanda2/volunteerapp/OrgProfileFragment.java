@@ -18,6 +18,8 @@ public class OrgProfileFragment extends Fragment {
     private TextView mOrgName;
     private Button mNewEventButton;
     private Button showEventButton;
+    private Button editProfile;
+    private Button signOut;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -31,7 +33,24 @@ public class OrgProfileFragment extends Fragment {
         mOrgName = v.findViewById(R.id.OrgNameSpace);
 
         mOrgName.setText(mUser.getDisplayName());
+        editProfile = v.findViewById(R.id.button);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), EditProfileInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+        signOut = v.findViewById(R.id.signOutButton);
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         mNewEventButton = v.findViewById(R.id.newEventButton);
         mNewEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +67,7 @@ public class OrgProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
         return v;
     }

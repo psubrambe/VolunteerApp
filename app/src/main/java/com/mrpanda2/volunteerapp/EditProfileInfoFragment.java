@@ -67,7 +67,6 @@ public class EditProfileInfoFragment extends Fragment {
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(name)
                             .build();
-
                     mUser.updateProfile(profileUpdates)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -91,7 +90,17 @@ public class EditProfileInfoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     final String name = mName.getText().toString();
-                    rootRef.child("volunteers").child(mUser.getUid()).child("name").setValue(name);
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .build();
+
+                    mUser.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                }
+                            });
+                    rootRef.child("organizations").child(mUser.getUid()).child("name").setValue(name);
                     Toast.makeText(EditProfileInfoFragment.this.getActivity(), "Name Updated For Next Session", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(EditProfileInfoFragment.this.getActivity(), MainActivity.class);
                     startActivity(intent);

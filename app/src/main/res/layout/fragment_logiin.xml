@@ -6,89 +6,94 @@
     android:layout_height="match_parent"
     android:background="@color/colorGreen"
     tools:context=".LoginFrag">
+    <TextView
+        android:id="@+id/OrgNameSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/orgName"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+
         android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OrgNameSpace"
         tools:layout_editor_absoluteX="0dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-    <Button
-        android:id="@+id/newEventButton"
-        android:layout_width="194dp"
-        android:layout_height="110dp"
-
-        android:layout_marginTop="100dp"
-        android:text="@string/newEvent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="194dp"
-        android:layout_height="110dp"
-
-        android:layout_marginTop="500dp"
-        android:text="@string/editProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/Events"
+                android:id="@+id/newEventButton"
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="200dp"
-                android:text="@string/events"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <Button
-                android:id="@+id/MapB"
-                android:layout_width="194dp"
-                android:layout_height="110dp"
-
-                android:layout_marginTop="400dp"
-                android:text="@string/map"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <Button
-                android:id="@+id/calculate_button"
-                android:layout_width="194dp"
-                android:layout_height="110dp"
-
-                android:layout_marginTop="300dp"
-                android:text="@string/calculate_donated_hours"
+                android:layout_marginTop="32dp"
+                android:text="@string/newEvent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/OrgNameSpace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="48dp"
-                android:text="@string/orgName"
-                android:textSize="36sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="@string/editProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/MapB" />
+
+            <Button
+                android:id="@+id/signOutButton"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+                android:text="Sign Out"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button" />
+            <Button
+                android:id="@+id/Events"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+                android:text="@string/events"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newEventButton" />
+
+            <Button
+                android:id="@+id/MapB"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+                android:text="@string/map"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculate_button" />
+
+            <Button
+                android:id="@+id/calculate_button"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+
+                android:text="@string/calculate_donated_hours"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Events" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
