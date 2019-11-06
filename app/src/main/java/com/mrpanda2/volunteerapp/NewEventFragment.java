@@ -47,7 +47,7 @@ public class NewEventFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_new_event, container, false);
 
         mEvent.setOrg(mUser.getDisplayName());
@@ -119,8 +119,20 @@ public class NewEventFragment extends Fragment {
                     Toast.makeText(NewEventFragment.this.getActivity(), "Event Created", Toast.LENGTH_SHORT).show();
                 /*Intent intent = new Intent(NewEventFragment.this.getActivity(), organizationSignInPage.class);
                 startActivity(intent);*/
-                    Intent intent = EventActivity.newIntent(NewEventFragment.this.getActivity(), mEvent.getId());
-                    startActivity(intent);
+
+                    //Intent intent = EventActivity.newIntent(NewEventFragment.this.getActivity(), mEvent.getId());
+                    EditEventFragment createdFragment = new EditEventFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("date", mEvent.getDate());
+                    bundle.putString("location", mEvent.getLocation());
+                    bundle.putString("name", mEvent.getName());
+                    bundle.putString("time", mEvent.getTime());
+                    bundle.putString("org", mEvent.getOrg());
+                    bundle.putString("dataSnap", mEvent.getId().toString());
+                    createdFragment.setArguments(bundle);
+                    getFragmentManager().beginTransaction().replace(R.id.new_event_fragment_container, createdFragment).addToBackStack(null).commit();
+                    //Intent intent = new Intent(NewEventFragment.this.getActivity(), createdFragment.getClass());
+                    //startActivity(intent);
                 }
             }
         });

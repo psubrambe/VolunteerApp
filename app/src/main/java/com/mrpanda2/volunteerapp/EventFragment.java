@@ -67,6 +67,7 @@ public class EventFragment extends Fragment {
         row.addView(header);
         tableLayout.addView(row);
 
+        //not sure these are necessary, seem to be working when commented out -matt
         final Bundle bundle = getArguments();
         mName.setText(String.valueOf(bundle.getString("name")));
         mDate.setText(String.valueOf(bundle.getString("date")));
