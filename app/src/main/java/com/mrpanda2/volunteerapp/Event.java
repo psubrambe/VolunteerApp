@@ -12,9 +12,11 @@ public class Event {
     private String mLocation;
     private String mOrg;
     private String mOrgId;
+    private long mAttendees;
 
     public Event(){
         mId = UUID.randomUUID();
+        mAttendees = 0;
     }
 
     public UUID getId() { return mId; }
@@ -44,5 +46,13 @@ public class Event {
     public String getOrgId() {return mOrgId;}
 
     public void setOrgId(String orgid) {mOrgId = orgid;}
+
+    public long getAttendees(){return mAttendees;}
+
+    public void incrementAttendees(){mAttendees += 1;}
+
+    public void decrementAttendees(){mAttendees -= 1;}
+
+
 
 }

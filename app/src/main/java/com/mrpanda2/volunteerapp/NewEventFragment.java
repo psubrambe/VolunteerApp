@@ -128,6 +128,7 @@ public class NewEventFragment extends Fragment {
                     bundle.putString("name", mEvent.getName());
                     bundle.putString("time", mEvent.getTime());
                     bundle.putString("org", mEvent.getOrg());
+                    bundle.putLong("attendees", mEvent.getAttendees());
                     bundle.putString("dataSnap", mEvent.getId().toString());
                     createdFragment.setArguments(bundle);
                     getFragmentManager().beginTransaction().replace(R.id.new_event_fragment_container, createdFragment).addToBackStack(null).commit();
