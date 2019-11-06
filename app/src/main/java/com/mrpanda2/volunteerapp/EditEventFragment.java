@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,13 +36,14 @@ public class EditEventFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private String mEventId;
     private ArrayList<VolunteerSession> sessions;
+    private TextView mAttendees;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mEvent = new Event();
         Bundle bundle = getArguments();
-        final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
+        //final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -56,6 +58,7 @@ public class EditEventFragment extends Fragment {
         mUpdateButton = v.findViewById(R.id.update_event_button);
         mDeleteButton = v.findViewById(R.id.delete_event_button);
         mRecyclerView = v.findViewById(R.id.org_session_list);
+        mAttendees = v.findViewById(R.id.event_attendees);
         mRecyclerView.setHasFixedSize(true);
         sessions = new ArrayList<VolunteerSession>();
         Bundle bundle = getArguments();
@@ -64,7 +67,12 @@ public class EditEventFragment extends Fragment {
         mTimeField.setText(String.valueOf(bundle.getString("time")));
         mLocationField.setText(String.valueOf(bundle.getString("location")));
         mOrgField.setText(String.valueOf(bundle.getString("org")));
+        String attendLine = (bundle.getLong("attendees")) + " volunteers plan to attend.";
+        mAttendees.setText(attendLine);
+
+
         mEventId = String.valueOf(bundle.getString("dataSnap"));
+
         final String dataSnap = String.valueOf(bundle.getString("dataSnap"));
 
         mUpdateButton.setOnClickListener(new View.OnClickListener(){

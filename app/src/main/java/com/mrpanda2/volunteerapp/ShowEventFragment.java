@@ -114,6 +114,8 @@ public class ShowEventFragment extends Fragment {
                             final String name = ds.child("name").getValue(String.class);
                             final String time = ds.child("time").getValue(String.class);
                             final String org = ds.child("org").getValue(String.class);
+                            final long attendees = ds.hasChild("attendees") ?  ds.child("attendees").getValue(long.class) :  0;
+
                             Log.d("TAG", date + " / " + location + " / " + name + "/" + time);
                             list.add(time);
                             TableRow row = new TableRow(getActivity());
@@ -134,6 +136,7 @@ public class ShowEventFragment extends Fragment {
                                     bundle.putString("name", name);
                                     bundle.putString("time", time);
                                     bundle.putString("org", org);
+                                    bundle.putLong("attendees", attendees);
                                     bundle.putString("dataSnap", dataSnap);
                                     secondFragment.setArguments(bundle);
                                     getFragmentManager().beginTransaction().replace(R.id.show_event_fragment_container, secondFragment).addToBackStack(null).commit();

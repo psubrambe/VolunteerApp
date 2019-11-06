@@ -154,7 +154,7 @@ public class OrgAnalysisFragment extends Fragment {
                             long displayHours = indvMins / 60;
                             displayMins = displayMins % 60;
 
-                            String totalFigures = displayHours + " hrs " + displayMins + " mins " + "      " + totalSessions + " sessions";
+                            String totalFigures = displayHours + " hrs " + displayMins + " mins " + "      " + indvSessions + " sessions";
                             mIndvFigures.setText(totalFigures);
                             indvMins = 0;
                             indvSessions = 0;

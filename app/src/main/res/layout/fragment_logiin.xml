@@ -24,7 +24,7 @@
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="100dp"
         android:text="@string/newEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -36,7 +36,7 @@
         android:layout_width="194dp"
         android:layout_height="110dp"
 
-        android:layout_marginTop="504dp"
+        android:layout_marginTop="500dp"
         android:text="@string/editProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -48,19 +48,30 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="236dp"
+                android:layout_marginTop="200dp"
                 android:text="@string/events"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <Button
-                android:id="@+id/editEventInformation"
+                android:id="@+id/MapB"
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
-                android:layout_marginTop="368dp"
-                android:text="Edit Event Info"
+                android:layout_marginTop="400dp"
+                android:text="@string/map"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/calculate_button"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+
+                android:layout_marginTop="300dp"
+                android:text="@string/calculate_donated_hours"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
