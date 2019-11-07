@@ -79,6 +79,32 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.ViewVolunteerAttendanceActivity" />
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAg6oyWASF2VmkX3bpq6I7wf4oGV_bBDVM"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".EventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.MapsActivity" />
+        </activity>
+        <activity android:name=".OrgAnalysisActivity"
+            android:parentActivityName=".organizationSignInPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.OrgAnalysisActivity" />
+        </activity>
+        <activity android:name=".PreviousVolSessions"
+            android:parentActivityName=".VolunteerSignInActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.PreviousVolSessions" />
+        </activity>
     </application>
 
 </manifest>
