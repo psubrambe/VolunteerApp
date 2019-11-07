@@ -3,6 +3,8 @@ package com.mrpanda2.volunteerapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,12 +22,14 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class NewEventFragment extends Fragment {
     private Event mEvent;
@@ -112,6 +116,9 @@ public class NewEventFragment extends Fragment {
                 if (mEvent.getDate() == null || mEvent.getName() == null || mEvent.getLocation() == null || mEvent.getTime() == null){
                     Toast.makeText(NewEventFragment.this.getActivity(), "Field is empty.", Toast.LENGTH_SHORT).show();
                 }
+                else if (getAddressLocation(mEvent.getLocation()) == null){
+                    Toast.makeText(NewEventFragment.this.getActivity(), "Invalid Location.", Toast.LENGTH_SHORT).show();
+                }
                 else {
                     Log.d("Tag", "Database write attempt.");
                     mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -189,6 +196,22 @@ public class NewEventFragment extends Fragment {
         timePicker.show();
 
     }
+    public LatLng getAddressLocation(String strAddress){
 
+        Geocoder coder = new Geocoder(this.getActivity());
+        List<Address> address;
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            LatLng latLong = new LatLng(location.getLatitude(), location.getLongitude());
+            return latLong;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
 
 }
