@@ -21,6 +21,8 @@ public class VolProfileFragment extends Fragment {
     private Button editProfile;
     private Button signOut;
     private Button viewButton;
+    private Button mMapButton;
+    private Button mPreviousSessions;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -64,6 +66,24 @@ public class VolProfileFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(VolProfileFragment.this.getActivity(), ShowEventActivity.class);
+                startActivity(intent);
+            }
+        });
+        mMapButton = v.findViewById(R.id.map_button);
+        mMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        mPreviousSessions = v.findViewById(R.id.previous_sessions);
+        mPreviousSessions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), PreviousVolSessions.class);
                 startActivity(intent);
             }
         });

@@ -20,6 +20,8 @@ public class OrgProfileFragment extends Fragment {
     private Button showEventButton;
     private Button editProfile;
     private Button signOut;
+    private Button mCalculateButton;
+    private Button mMapButton;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -51,6 +53,23 @@ public class OrgProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        mCalculateButton = v.findViewById(R.id.calculate_button);
+        mCalculateButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), OrgAnalysisActivity.class);
+                startActivity(intent);
+            }
+        });
+        mMapButton = v.findViewById(R.id.MapB);
+        mMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(OrgProfileFragment.this.getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mNewEventButton = v.findViewById(R.id.newEventButton);
         mNewEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
