@@ -2,6 +2,7 @@ package com.mrpanda2.volunteerapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -80,6 +81,7 @@ public class ShowEventFragment extends Fragment {
                         tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
                         row.addView(tv1);
+                        row.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                         row.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 EventFragment secondFragment = new EventFragment();
@@ -94,8 +96,25 @@ public class ShowEventFragment extends Fragment {
                                 getFragmentManager().beginTransaction().replace(R.id.show_event_fragment_container, secondFragment).addToBackStack(null).commit();
                             }
                         });
-
+                        TableRow row2 = new TableRow(getActivity());
+                        row2.setBackgroundColor(Color.BLACK);
+                        TextView tv2 = new TextView(getActivity());
+                        tv2.setText(" ");
+                        tv2.setTextSize(3);
+                        tv2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                                TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                        row2.addView(tv2);
+                        TableRow row3 = new TableRow(getActivity());
+                        row3.setBackgroundColor(Color.BLACK);
+                        TextView tv3 = new TextView(getActivity());
+                        tv3.setText(" ");
+                        tv3.setTextSize(3);
+                        tv3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                                TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                        row3.addView(tv3);
+                        tableLayout.addView(row3);
                         tableLayout.addView(row);
+                        tableLayout.addView(row2);
                     }
                 }
 
@@ -127,6 +146,7 @@ public class ShowEventFragment extends Fragment {
                             tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                                     TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
                             row.addView(tv1);
+                            row.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                             row.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     EditEventFragment secondFragment = new EditEventFragment();
@@ -142,8 +162,25 @@ public class ShowEventFragment extends Fragment {
                                     getFragmentManager().beginTransaction().replace(R.id.show_event_fragment_container, secondFragment).addToBackStack(null).commit();
                                 }
                             });
-
+                            TableRow row2 = new TableRow(getActivity());
+                            row2.setBackgroundColor(Color.BLACK);
+                            TextView tv2 = new TextView(getActivity());
+                            tv2.setText(" ");
+                            tv2.setTextSize(3);
+                            tv2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                                    TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                            row2.addView(tv2);
+                            TableRow row3 = new TableRow(getActivity());
+                            row3.setBackgroundColor(Color.BLACK);
+                            TextView tv3 = new TextView(getActivity());
+                            tv3.setText(" ");
+                            tv3.setTextSize(3);
+                            tv3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                                    TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                            row3.addView(tv3);
+                            tableLayout.addView(row3);
                             tableLayout.addView(row);
+                            tableLayout.addView(row2);
                         }
                     }
                 }

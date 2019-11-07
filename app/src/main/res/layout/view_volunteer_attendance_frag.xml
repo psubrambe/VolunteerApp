@@ -6,16 +6,16 @@
         android:id="@+id/event_name_header"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Current Events"
+        android:text="Your Events"
         android:textSize="16pt"
         android:background = "@color/common_google_signin_btn_text_dark_disabled"
         />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TableLayout
-        android:id="@+id/maintable"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></TableLayout>
+        <TableLayout
+            android:id="@+id/maintable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableLayout>
     </ScrollView>
 </LinearLayout>

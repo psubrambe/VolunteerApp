@@ -73,6 +73,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mrpanda2.volunteerapp.EditProfileInfoActivity" />
         </activity>
+        <activity android:name=".ViewVolunteerAttendanceActivity"
+            android:parentActivityName=".VolunteerSignInActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mrpanda2.volunteerapp.ViewVolunteerAttendanceActivity" />
+        </activity>
     </application>
 
 </manifest>

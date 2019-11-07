@@ -7,14 +7,35 @@
     android:background="@color/colorGreen"
     tools:context=".LoginFrag">
     <TextView
-        android:id="@+id/OrgNameSpace"
+        android:id="@+id/OrgNameSpaceHi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:text="@string/orgName"
+        android:text="Hi "
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/OrgNameSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/orgName"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@id/OrgNameSpaceHi"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/OrgNameSpacePoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="!"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@id/OrgNameSpace"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
@@ -39,7 +60,7 @@
                 android:layout_marginTop="32dp"
                 android:text="@string/newEvent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,6 +69,7 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
+                android:layout_marginTop="6dp"
                 android:text="@string/editProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
@@ -58,15 +80,18 @@
                 android:id="@+id/signOutButton"
                 android:layout_width="194dp"
                 android:layout_height="110dp"
+                android:layout_marginTop="6dp"
                 android:text="Sign Out"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/button" />
+
             <Button
                 android:id="@+id/Events"
                 android:layout_width="194dp"
                 android:layout_height="110dp"
-                android:text="@string/events"
+                android:layout_marginTop="6dp"
+                android:text="View Your Events"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +101,8 @@
                 android:id="@+id/MapB"
                 android:layout_width="194dp"
                 android:layout_height="110dp"
-                android:text="@string/map"
+                android:layout_marginTop="6dp"
+                android:text="Map"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,9 +113,10 @@
                 android:layout_width="194dp"
                 android:layout_height="110dp"
 
+                android:layout_marginTop="6dp"
                 android:text="@string/calculate_donated_hours"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Events" />
 

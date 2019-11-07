@@ -107,6 +107,7 @@ public class EventFragment extends Fragment {
                         if (sharedPref.getBoolean(userPlusEvent, false) == false){
                             //set shared pref
                             editor.putBoolean(userPlusEvent, true);
+                            editor.putString(eventId,eventId);
                             editor.commit();
                             //increment event in database
                             mEventAttendees += 1;
@@ -119,6 +120,7 @@ public class EventFragment extends Fragment {
                         else{
                             //set shared pref
                             editor.putBoolean(userPlusEvent, false);
+                            editor.remove(eventId);
                             editor.commit();
                             //decrement event in database
                             mEventAttendees -= 1;

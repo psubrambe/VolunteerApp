@@ -20,6 +20,7 @@ public class VolProfileFragment extends Fragment {
     private Button mShowEventButton;
     private Button editProfile;
     private Button signOut;
+    private Button viewButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -30,7 +31,14 @@ public class VolProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.volunteer_sign_in, container, false);
-
+        viewButton = v.findViewById(R.id.view_edit_vol_data);
+        viewButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(VolProfileFragment.this.getActivity(), ViewVolunteerAttendanceActivity.class);
+                startActivity(intent);
+            }
+        });
         mVolName = v.findViewById(R.id.volunteer_name);
         mVolName.setText(mUser.getDisplayName());
         editProfile = v.findViewById(R.id.vol_edit_profile);
