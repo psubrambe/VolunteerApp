@@ -55,7 +55,7 @@ public class OrgAnalysisFragment extends Fragment {
         mStartDate  = OrgAnalysisActivity.mStart;
         mEndDate = OrgAnalysisActivity.mEnd;
         mUser = FirebaseAuth.getInstance().getCurrentUser();
-        String id = mUser.getUid();
+        final String id = mUser.getUid();
         mEvents = new ArrayList<>();
         mVols = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -73,8 +73,7 @@ public class OrgAnalysisFragment extends Fragment {
                     catch(ParseException e){
                         e.printStackTrace();
                     }
-
-                    if (snapshot.child("orgId").getValue().equals(mUser.getUid()) && eventDate.compareTo(mStartDate) >= 0 && eventDate.compareTo(mEndDate) <= 0){
+                    if (snapshot.child("orgId").getValue().equals(id) && eventDate.compareTo(mStartDate) >= 0 && eventDate.compareTo(mEndDate) <= 0){
                         Log.d("ORGANALYSIS", "Added Event to List");
                         mEvents.add(snapshot.getKey());
                     }

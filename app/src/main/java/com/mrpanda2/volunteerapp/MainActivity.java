@@ -33,10 +33,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText password;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private FirebaseDatabase mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mData = FirebaseDatabase.getInstance();
+        mData.setPersistenceEnabled(true);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         SharedPreferences sharedPref = MainActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);

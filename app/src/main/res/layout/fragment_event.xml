@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/event_fragment"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="0dp"
+    android:background="@color/colorBlue"
+    android:fillViewport="true"
     >
-
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
     <TextView
         android:id="@+id/event_name_header"
         android:layout_height="wrap_content"
@@ -104,14 +110,13 @@
         android:text="@string/clockout"
         />
 
-    <TableLayout
-        android:id="@+id/vol_event_table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        <TableLayout
+            android:id="@+id/vol_event_table"
+            android:layout_width="match_parent"
+            android:layout_height="384dp" />
 
 
 
 
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

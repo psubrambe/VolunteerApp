@@ -1,6 +1,8 @@
 package com.mrpanda2.volunteerapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -46,6 +48,10 @@ public class volunteerSignUpPage extends AppCompatActivity implements View.OnCli
 
         volunteerSignUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
+                SharedPreferences sharedPref = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(getString(R.string.typeid), "vol");
+                editor.commit();
                 RegisterUser();
             }
         });

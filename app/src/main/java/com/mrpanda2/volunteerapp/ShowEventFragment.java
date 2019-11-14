@@ -81,7 +81,7 @@ public class ShowEventFragment extends Fragment {
                         tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                                 TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
                         row.addView(tv1);
-                        row.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+
                         row.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 EventFragment secondFragment = new EventFragment();
@@ -146,7 +146,7 @@ public class ShowEventFragment extends Fragment {
                             tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                                     TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
                             row.addView(tv1);
-                            row.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+
                             row.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     EditEventFragment secondFragment = new EditEventFragment();

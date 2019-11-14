@@ -5,15 +5,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:spacing="15dp">
+    android:spacing="15dp"
+    android:background="@color/colorBlue"
+    >
 
     <TextView
         android:id="@+id/start_date_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:text="@string/no_start_date_selected"
-    />
+        android:text="@string/no_start_date_selected" />
 
     <Button
         android:id="@+id/start_date_button"
@@ -26,10 +27,9 @@
     <TextView
         android:id="@+id/end_date_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:text="@string/no_end_date_selected"
-        />
+        android:text="@string/no_end_date_selected" />
 
     <Button
         android:id="@+id/end_date_button"

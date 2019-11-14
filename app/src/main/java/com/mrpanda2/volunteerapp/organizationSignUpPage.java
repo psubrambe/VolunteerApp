@@ -1,6 +1,8 @@
 package com.mrpanda2.volunteerapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -41,9 +43,12 @@ public class organizationSignUpPage extends AppCompatActivity {
         mPassword = findViewById(R.id.OrgPassword);
         mName = findViewById(R.id.OrgName);
         mOrgSignUpButton = findViewById(R.id.OrgSignUpButton);
-
         mOrgSignUpButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                SharedPreferences sharedPref = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(getString(R.string.typeid), "org");
+                editor.commit();
                 RegisterOrg();
             }
         });

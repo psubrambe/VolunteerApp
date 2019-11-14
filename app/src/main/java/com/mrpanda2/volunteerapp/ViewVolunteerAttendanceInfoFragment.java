@@ -80,7 +80,6 @@ public class ViewVolunteerAttendanceInfoFragment extends Fragment {
                             tv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                                     TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
                             row.addView(tv1);
-                            row.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                             TableRow row2 = new TableRow(getActivity());
                             row2.setBackgroundColor(Color.BLACK);
                             TextView tv2 = new TextView(getActivity());
