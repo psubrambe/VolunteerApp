@@ -48,6 +48,7 @@ public class EventFragment extends Fragment {
     private int sessionActive;
     private CheckBox mAttend;
     private long mEventAttendees;
+    private String mActiveSessionId;
 
     @Override public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -161,6 +162,42 @@ public class EventFragment extends Fragment {
         mLocation.setText(String.valueOf(bundle.getString("location")));
         mOrg.setText(String.valueOf(bundle.getString("org")));
 
+
+        //check if active session exits for user
+        mDatabase.child("sessions").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if(snapshot.hasChild("volId") && snapshot.child("volId").getValue().equals(mUser.getUid()) && snapshot.hasChild("active") && (long) snapshot.child("active").getValue() == 0){
+                        mSession = new VolunteerSession();
+                        mSession.setIdString(snapshot.getKey());
+                        mSession.setTimeIn(snapshot.child("timeIn").getValue().toString());
+                        mSession.setClosedStatus(0);
+                        mActiveSessionId = mSession.getmIdString();
+                        Timestamp timeIn = Timestamp.valueOf(mSession.getTimeIn());
+                        TableRow row = new TableRow(getActivity());
+                        row.setWeightSum(4);
+                        TextView clockInRow = new TextView(getActivity());
+                        //format timestamp
+                        SimpleDateFormat format = new SimpleDateFormat("HH:mm aa");
+                        //use timestamp from above as clock in time
+                        String clockIn = format.format(timeIn);
+                        clockInRow.setText(clockIn);
+                        clockInRow.setTextSize(18);
+                        clockInRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                                TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+                        row.addView(clockInRow);
+                        tableLayout.addView(row);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         mClockInButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -178,6 +215,8 @@ public class EventFragment extends Fragment {
                     mSession.setEventName(mName.getText().toString());
                     mSession.setVolId(mUser.getUid());
                     mSession.setVolName(mUser.getDisplayName());
+                    mSession.setIdString(mSession.getId().toString());
+                    mActiveSessionId = mSession.getmIdString();
                     //get date from calender
                     Calendar cal = Calendar.getInstance();
                     int YEAR = cal.get(Calendar.YEAR);
@@ -191,7 +230,7 @@ public class EventFragment extends Fragment {
                     //set time out to null
                     mSession.setTimeOut("TBD");
                     //save session item to database
-                    mDatabase.child("sessions").child(mSession.getId().toString()).setValue(mSession);
+                    mDatabase.child("sessions").child(mActiveSessionId).setValue(mSession);
 
                     //add session to table view
                     TableRow row = new TableRow(getActivity());
@@ -207,6 +246,7 @@ public class EventFragment extends Fragment {
                             TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
                     row.addView(clockInRow);
                     tableLayout.addView(row);
+
                     //inform user of successful clock in
                     Toast.makeText(EventFragment.this.getActivity(), "Clocked In", Toast.LENGTH_SHORT).show();
                 }
@@ -231,9 +271,9 @@ public class EventFragment extends Fragment {
                     long milliseconds = timeOut.getTime() - timeIn.getTime();
                     long minutes = milliseconds / 60000;
                     mSession.setDuration(minutes);
-                    mDatabase.child("sessions").child(mSession.getId().toString()).child("timeOut").setValue(mSession.getTimeOut());
-                    mDatabase.child("sessions").child(mSession.getId().toString()).child("duration").setValue(mSession.getDuration());
-                    mDatabase.child("sessions").child(mSession.getId().toString()).child("active").setValue(mSession.getActive());
+                    mDatabase.child("sessions").child(mActiveSessionId).child("timeOut").setValue(mSession.getTimeOut());
+                    mDatabase.child("sessions").child(mActiveSessionId).child("duration").setValue(mSession.getDuration());
+                    mDatabase.child("sessions").child(mActiveSessionId).child("active").setValue(mSession.getActive());
 
                     //remove previous row from table for replacement
                     int childCount = tableLayout.getChildCount();
