@@ -38,8 +38,28 @@ public class OrgAnalysisActivity extends AppCompatActivity {
         mStartButton = findViewById(R.id.start_date_button);
         mEndButton = findViewById(R.id.end_date_button);
         mSubmitButton = findViewById(R.id.date_submit_button);
-        mStart = null;
-        mEnd = null;
+        if (savedInstanceState != null && savedInstanceState.containsKey("date_start") && !savedInstanceState.getString("date_start").isEmpty()){
+            try {
+                mStart = new SimpleDateFormat("MM/dd/yyyy").parse(savedInstanceState.getString("date_start"));
+            }
+            catch (ParseException e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            mStart = null;
+        }
+        if (savedInstanceState != null && savedInstanceState.containsKey("date_end") && !savedInstanceState.getString("date_end").isEmpty()){
+            try {
+                mStart = new SimpleDateFormat("MM/dd/yyyy").parse(savedInstanceState.getString("date_end"));
+            }
+            catch (ParseException e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            mEnd = null;
+        }
 
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +79,7 @@ public class OrgAnalysisActivity extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(OrgAnalysisActivity.this, "Working", Toast.LENGTH_SHORT).show();
                 if (mStart == null || mEnd == null){
                     Toast.makeText(OrgAnalysisActivity.this, "Select Dates", Toast.LENGTH_SHORT).show();
                 }
@@ -70,14 +91,21 @@ public class OrgAnalysisActivity extends AppCompatActivity {
                     if (fragment == null){
                         fragment = new OrgAnalysisFragment();
                         fm.beginTransaction()
-                                .add(R.id.org_analysis_container, fragment)
+                                //.add(R.id.org_analysis_container, fragment)
+                                .add(R.id.org_analysis_container, fragment, "calculate")
                                 .commit();
 
+                    }
+                    else{
+                        fragment = new OrgAnalysisFragment();
+                        fm.beginTransaction()
+                                //.add(R.id.org_analysis_container, fragment)
+                                .replace(R.id.org_analysis_container, fragment, "calculate")
+                                .commit();
                     }
                 }
             }
         });
-
     }
 
     private void handleDate(final int x) {
@@ -122,6 +150,13 @@ public class OrgAnalysisActivity extends AppCompatActivity {
         }, YEAR, MONTH, DATE);
 
         datePicker.show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        outState.putString("date_start", mStartString);
+        outState.putString("date_end", mEndString);
+        super.onSaveInstanceState(outState);
     }
 
 }
