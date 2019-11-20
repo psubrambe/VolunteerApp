@@ -79,7 +79,7 @@ public class OrgAnalysisActivity extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(OrgAnalysisActivity.this, "Working", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OrgAnalysisActivity.this, "Working", Toast.LENGTH_SHORT).show();
                 if (mStart == null || mEnd == null){
                     Toast.makeText(OrgAnalysisActivity.this, "Select Dates", Toast.LENGTH_SHORT).show();
                 }
