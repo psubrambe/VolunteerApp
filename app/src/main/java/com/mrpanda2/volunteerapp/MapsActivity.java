@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -73,13 +75,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
+        if (isNetworkAvailable()) {
         mClient.connect();
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            Location location = LocationServices.FusedLocationApi.getLastLocation(mClient);
-            if (location != null) {
-                getLocation(location);
-            } 
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Location location = LocationServices.FusedLocationApi.getLastLocation(mClient);
+                if (location != null) {
+                    getLocation(location);
+                }
+            }
         }
     }
     @Override
@@ -97,22 +101,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onConnected(Bundle bundle) {
         Log.i(TAG, "Location services connected.");
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            Location location = LocationServices.FusedLocationApi.getLastLocation(mClient);
-            if (location != null)
-            {
-                getLocation(location);
-            }
-            else{
-                Toast.makeText(this, "Location cannot be detected. To see your location, turn on location services and try again.", Toast.LENGTH_LONG).show();
+        if (isNetworkAvailable()) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Location location = LocationServices.FusedLocationApi.getLastLocation(mClient);
+                if (location != null) {
+                    getLocation(location);
+                } else {
+                    Toast.makeText(this, "Location cannot be detected. To see your location, turn on location services and try again.", Toast.LENGTH_LONG).show();
+                }
+            } else if (!responded) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        1);
+                responded = true;
             }
         }
-        else if (!responded){
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    1);
-            responded = true;
+        else{
+            Toast.makeText(this, "Cannot connect to the internet. You must connect to view your events and location.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -168,41 +174,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ref = mDatabase.child("events");
+        if (isNetworkAvailable()) {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference ref = mDatabase.child("events");
+            mMap = googleMap;
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(40.367474, -82.996216))); //ohio by default
+            mMap.moveCamera(CameraUpdateFactory.zoomTo(6));
+            ValueEventListener valueEventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<String> list = new ArrayList<String>();
+                    LatLng eventLocation = new LatLng(40.367474, -82.996216); //Initialized to ohio for a standard location
+                    //get user typeid
+                    SharedPreferences sharedPref = MapsActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+                    String userType = sharedPref.getString(getString(R.string.typeid), "default");
+                    if (userType.equals("vol")) {
 
-        mMap = googleMap;
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(40.367474, -82.996216))); //ohio by default
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(6));
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<String> list = new ArrayList<String>();
-                LatLng eventLocation = new LatLng(40.367474, -82.996216); //Initialized to ohio for a standard location
-                //get user typeid
-                SharedPreferences sharedPref = MapsActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
-                String userType = sharedPref.getString(getString(R.string.typeid), "default");
-                if (userType.equals("vol")) {
-
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        final String dataSnap = ds.getKey();
-                        final String date = ds.child("date").getValue(String.class);
-                        final String location = ds.child("location").getValue(String.class);
-                        final String name = ds.child("name").getValue(String.class);
-                        final String time = ds.child("time").getValue(String.class);
-                        final String org = ds.child("org").getValue(String.class);
-                        eventLocation = getAddressLocation(location);
-                        mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
-                    }
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
-                    mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-                }
-                else if (userType.equals("org")){
-                    FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        final String orgId = ds.child("orgId").getValue(String.class);
-
-                        if (orgId != null && orgId.equals(mUser.getUid())) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             final String dataSnap = ds.getKey();
                             final String date = ds.child("date").getValue(String.class);
                             final String location = ds.child("location").getValue(String.class);
@@ -214,15 +202,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
                         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+                    } else if (userType.equals("org")) {
+                        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            final String orgId = ds.child("orgId").getValue(String.class);
+
+                            if (orgId != null && orgId.equals(mUser.getUid())) {
+                                final String dataSnap = ds.getKey();
+                                final String date = ds.child("date").getValue(String.class);
+                                final String location = ds.child("location").getValue(String.class);
+                                final String name = ds.child("name").getValue(String.class);
+                                final String time = ds.child("time").getValue(String.class);
+                                final String org = ds.child("org").getValue(String.class);
+                                eventLocation = getAddressLocation(location);
+                                mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
+                            }
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
+                            mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        };
-        ref.addListenerForSingleValueEvent(valueEventListener);
+                }
+            };
+            ref.addListenerForSingleValueEvent(valueEventListener);
+        }
+        else{
+        }
+    }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
