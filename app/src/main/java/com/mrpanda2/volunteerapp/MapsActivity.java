@@ -74,6 +74,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onResume() {
         super.onResume();
         mClient.connect();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Location location = LocationServices.FusedLocationApi.getLastLocation(mClient);
+            if (location != null) {
+                getLocation(location);
+            } 
+        }
     }
     @Override
     protected void onStop() {
@@ -132,7 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loc = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(loc).title("Your Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(18));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(17));
 
 
     }
@@ -188,7 +195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
                     }
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
-                    mMap.moveCamera(CameraUpdateFactory.zoomTo(8));
+                    mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
                 }
                 else if (userType.equals("org")){
                     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -206,7 +213,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
                         }
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
-                        mMap.moveCamera(CameraUpdateFactory.zoomTo(8));
+                        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
                     }
                 }
             }
