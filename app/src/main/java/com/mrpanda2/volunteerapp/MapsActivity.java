@@ -97,6 +97,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             {
                 getLocation(location);
             }
+            else{
+                Toast.makeText(this, "Location cannot be detected. To see your location, turn on location services and try again.", Toast.LENGTH_LONG).show();
+            }
         }
         else if (!responded){
             ActivityCompat.requestPermissions(this,
@@ -108,7 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.i(TAG, "Location services suspended. Please reconnect.");
+        Toast.makeText(this, "Location services suspended.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -153,22 +156,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Toast.makeText(this, "Location services suspended.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = mDatabase.child("events");
+
         mMap = googleMap;
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(40.367474, -82.996216))); //ohio by default
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(6));
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<String> list = new ArrayList<String>();
+                LatLng eventLocation = new LatLng(40.367474, -82.996216); //Initialized to ohio for a standard location
                 //get user typeid
                 SharedPreferences sharedPref = MapsActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
                 String userType = sharedPref.getString(getString(R.string.typeid), "default");
                 if (userType.equals("vol")) {
+
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         final String dataSnap = ds.getKey();
                         final String date = ds.child("date").getValue(String.class);
@@ -176,9 +184,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         final String name = ds.child("name").getValue(String.class);
                         final String time = ds.child("time").getValue(String.class);
                         final String org = ds.child("org").getValue(String.class);
-                        LatLng eventLocation = getAddressLocation(location);
+                        eventLocation = getAddressLocation(location);
                         mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
                     }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
+                    mMap.moveCamera(CameraUpdateFactory.zoomTo(8));
                 }
                 else if (userType.equals("org")){
                     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -192,9 +202,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             final String name = ds.child("name").getValue(String.class);
                             final String time = ds.child("time").getValue(String.class);
                             final String org = ds.child("org").getValue(String.class);
-                            LatLng eventLocation = getAddressLocation(location);
+                            eventLocation = getAddressLocation(location);
                             mMap.addMarker(new MarkerOptions().position(eventLocation).title(name));
                         }
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(eventLocation)); //moves camera to any event for convenience
+                        mMap.moveCamera(CameraUpdateFactory.zoomTo(8));
                     }
                 }
             }
