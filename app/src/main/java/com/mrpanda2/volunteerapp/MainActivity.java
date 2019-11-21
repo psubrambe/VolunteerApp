@@ -34,15 +34,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseDatabase mData;
-
+    static boolean calledAlready = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!calledAlready)
+        {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            calledAlready = true;
+        }
+        SharedPreferences sharedPref = MainActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         mData = FirebaseDatabase.getInstance();
-        mData.setPersistenceEnabled(true);
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        SharedPreferences sharedPref = MainActivity.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         String userType = sharedPref.getString(getString(R.string.typeid), "default");
         if(userType.equals("vol") && mUser != null){
             SendToVolProfile();
