@@ -75,16 +75,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
-        if (isNetworkAvailable()) {
         mClient.connect();
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+           /* if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 Location location = LocationServices.FusedLocationApi.getLastLocation(mClient);
                 if (location != null) {
                     getLocation(location);
                 }
-            }
-        }
+                else{
+                    Toast.makeText(this, "TTest", Toast.LENGTH_SHORT).show();
+                }
+            }*/
     }
     @Override
     protected void onStop() {
