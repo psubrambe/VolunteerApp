@@ -1,5 +1,6 @@
 package com.mrpanda2.volunteerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -30,6 +31,12 @@ public class VolunteerSignInActivity extends AppCompatActivity {
                     .commit();
         }
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(VolunteerSignInActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

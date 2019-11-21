@@ -1,5 +1,6 @@
 package com.mrpanda2.volunteerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,5 +25,10 @@ public class organizationSignInPage extends AppCompatActivity {
                     .add(R.id.org_profile_fragment_container, fragment)
                     .commit();
         }
+    }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(organizationSignInPage.this, MainActivity.class);
+        startActivity(intent);
     }
 }
