@@ -116,7 +116,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 } else {
                     Toast.makeText(this, "Need permission to view location, please edit permissions", Toast.LENGTH_SHORT).show();
                 }
@@ -130,6 +129,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loc = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(loc).title("Your Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(18));
+
 
     }
     public LatLng getAddressLocation(String strAddress){
