@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
-    android:background="@color/colorBlue"
+    android:background="@drawable/login_bg"
     android:fillViewport="true"
     >
     <LinearLayout

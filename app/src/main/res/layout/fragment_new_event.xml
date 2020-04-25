@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
-    android:background="@color/colorBlue"
+    android:background="@drawable/login_bg"
     >
 <LinearLayout
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBlue"
+    android:background="@drawable/login_bg"
     >
     <EditText
         android:id="@+id/new_event_name"

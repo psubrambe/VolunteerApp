@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:spacing="15dp"
-    android:background="@color/colorBlue"
+    android:background="@drawable/login_bg"
     >
 
     <TextView

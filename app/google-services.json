@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "666806516976",
-    "firebase_url": "https://volunteerapp-fe3e8.firebaseio.com",
-    "project_id": "volunteerapp-fe3e8",
-    "storage_bucket": "volunteerapp-fe3e8.appspot.com"
+    "project_number": "364222340030",
+    "firebase_url": "https://volunteerapp-86ef4.firebaseio.com",
+    "project_id": "volunteerapp-86ef4",
+    "storage_bucket": "volunteerapp-86ef4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:666806516976:android:fc84b6aa75a1354d0f9635",
+        "mobilesdk_app_id": "1:364222340030:android:07cafb593e45c41a8877ef",
         "android_client_info": {
           "package_name": "com.mrpanda2.volunteerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "666806516976-r4a93jn31k4d2ihb0ikp2dfp1dvi2mvm.apps.googleusercontent.com",
+          "client_id": "364222340030-lvggb49vmlk68omcjhvtdobq8jndnpbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mrpanda2.volunteerapp",
+            "certificate_hash": "e75ca1659961b7e7b8ab61f5594b920fa3711356"
+          }
+        },
+        {
+          "client_id": "364222340030-rir4d74252fd6qlsc23cjs4459nho58n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD5qE3LVYqS7a_CFLzy1jqISGolNxjLQcY"
+          "current_key": "AIzaSyC6vdgrvPkRBBIdE9ujeu4GyYo4jvE86h4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "666806516976-r4a93jn31k4d2ihb0ikp2dfp1dvi2mvm.apps.googleusercontent.com",
+              "client_id": "364222340030-rir4d74252fd6qlsc23cjs4459nho58n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

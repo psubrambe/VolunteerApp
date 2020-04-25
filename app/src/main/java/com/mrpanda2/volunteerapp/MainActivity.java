@@ -3,6 +3,7 @@ package com.mrpanda2.volunteerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,17 +26,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button volunteerSignInButton;
     Button organizationSignInButton;
-    Button volunteerSignUpButton;
-    Button organizationSignUpButton;
+    TextView volunteerSignUpButton;
+    TextView organizationSignUpButton;
     EditText email;
     EditText password;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseDatabase mData;
     static boolean calledAlready = false;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
